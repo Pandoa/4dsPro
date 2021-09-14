@@ -78,7 +78,7 @@ Each mediation partner supporting GDPR also has a method to disable personalized
 ## Summary
 The following diagram shows a summary to how your application should behave.
 <div style="text-align:center">
-	<img src="_images/AdMobConsent.png"/>
+	<img src="_images/AdMobConsent.png" class="no-shadow"/>
 </div>
 
 > Some Mediation Partners require to explicitly update the GDPR status when an user falls under GDPR regardless of user consent.
