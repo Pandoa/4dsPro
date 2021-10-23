@@ -6,7 +6,7 @@
 The plugin can be downloaded from the [Unreal Engine Marketplace](https://www.unrealengine.com/marketplace/en-US/product/003c2267b99c461d833b3664ee5552ee).
 
 ## How it works
-The plugin uses the Google Mobile Ads SDK of the target platform internally to display native ads. A simple yet complete API is available for both Blueprints
+The plugin uses the Google Mobile Ads SDK (AdMob) of the target platform internally to display native ads. A simple yet complete API is available for both Blueprints
 and C++ to seemlessly implement ads with Unreal Engine without bothering about platform-specific details.  
 All functionalities are available without limitation for Blueprints and / or C++.
 
