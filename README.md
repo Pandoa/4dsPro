@@ -3,7 +3,7 @@
 > An Unreal Engine plugin to display ads on mobile devices.
 
 ## Unreal Engine Marketplace
-The plugin is still in development and is not available yet.  
+The plugin can be downloaded from the [Unreal Engine Marketplace](https://www.unrealengine.com/marketplace/en-US/product/003c2267b99c461d833b3664ee5552ee).
 
 ## How it works
 The plugin uses the Google Mobile Ads SDK of the target platform internally to display native ads. A simple yet complete API is available for both Blueprints
