@@ -20,5 +20,5 @@ The issue occurs because Ads Pro updates the libraries to the latest version, br
 To fix the issue, call instead the new node that comes  with the plugin:
 
 <div class="centered center">
-  <div src="_images/ShowExternalUI.png"/>
+  <img src="_images/ShowExternalUI.png"/>
 </div>
