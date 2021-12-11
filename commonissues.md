@@ -10,7 +10,7 @@ To solve this issue:
 3. Scroll to the `Google Play Services` category.
 4. Untick `Include AdMob support for ads`.
 
-<div class="centered">
+<div class="centered center">
   <img src="_images/AdMobDeprecatedImport.png"/>  
 </div>
 
@@ -19,6 +19,6 @@ The issue occurs because Ads Pro updates the libraries to the latest version, br
 
 To fix the issue, call instead the new node that comes  with the plugin:
 
-<div class="centeered">
+<div class="centered center">
   <div src="_images/ShowExternalUI.png"/>
 </div>
