@@ -14,4 +14,11 @@ To solve this issue:
   <img src="_images/AdMobDeprecatedImport.png"/>  
 </div>
 
+# `Show External UI` node crashes
+The issue occurs because Ads Pro updates the libraries to the latest version, breaking the Unreal Engine code accessing a deprecated API.
 
+To fix the issue, call instead the new node that comes  with the plugin:
+
+<div class="centeered">
+  <div src="_images/ShowExternalUI.png"/>
+</div>
