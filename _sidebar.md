@@ -3,6 +3,7 @@
 - Configuration
   - [Get Started](/getstarted)
   - [C++ Setup](/cppsetup)
+  - [Rebuild the Plugin](/buildplugin)
 - Mediation
   - [AdColony](/adcolony)
   - [AdFalcon](/adfalcon)
