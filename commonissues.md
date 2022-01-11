@@ -84,6 +84,7 @@ End Object
 <button onclick="copyBlueprintCode(this)">Copy Code</button>
 </div>
 
+The following nodes can also be used to replace their counterparts.
 
 <div class="bpcode">
 <textarea readonly>
