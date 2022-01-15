@@ -4,6 +4,26 @@
   - [Get Started](/getstarted)
   - [C++ Setup](/cppsetup)
   - [Rebuild the Plugin](/buildplugin)
+- GDPR & Tracking
+  - [GDPR](/gdpr)
+  - [App Tracking Transparency](/apptrackingtransparency)
+- Ads
+  - [App Open](/appopen)
+  - [Banner View](/bannerview)
+  - [Interstitial Ad](/interstitialad)
+  - [Rewarded Video](/rewardedvideo)
+- Blueprints Examples
+  - [GDPR](/blueprintgdpr)
+  - [App Open](/blueprintappopen)
+  - [Banner View](/blueprintbannerview)
+  - [Interstitial Ad](/blueprintinterstitialad)
+  - [Rewarded Video](/blueprintrewardedvideo)
+- C++ Examples
+  - [GDPR](/cppgdpr)
+  - [App Open](/cppappopen)
+  - [Banner View](/cppbannerview)
+  - [Interstitial Ad](/cppinterstitialad)
+  - [Rewarded Video](/cpprewardedvideo)
 - Mediation
   - [AdColony](/adcolony)
   - [AdFalcon](/adfalcon)
@@ -30,26 +50,6 @@
   - [Vungle](/vungle)
   - [Zucks](/zucks)
   - [Others](/others)
-- GDPR & Tracking
-  - [GDPR](/gdpr)
-  - [App Tracking Transparency](/apptrackingtransparency)
-- Ads
-  - [App Open](/appopen)
-  - [Banner View](/bannerview)
-  - [Interstitial Ad](/interstitialad)
-  - [Rewarded Video](/rewardedvideo)
-- Blueprints Examples
-  - [GDPR](/blueprintgdpr)
-  - [App Open](/blueprintappopen)
-  - [Banner View](/blueprintbannerview)
-  - [Interstitial Ad](/blueprintinterstitialad)
-  - [Rewarded Video](/blueprintrewardedvideo)
-- C++ Examples
-  - [GDPR](/cppgdpr)
-  - [App Open](/cppappopen)
-  - [Banner View](/cppbannerview)
-  - [Interstitial Ad](/cppinterstitialad)
-  - [Rewarded Video](/cpprewardedvideo)
 - Support
   - [Frequently Asked Questions](/frequentlyaskedquestions)
   - [Troubleshooting](/troubleshooting)
