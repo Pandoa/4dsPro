@@ -253,7 +253,7 @@ End Object
 <button onclick="copyBlueprintCode(this)">Copy Code</button>
 </div>
 
-Or to move to a custom X/Y position, when can pass directly the X and Y coordinates:
+Or to move to a custom X/Y position, we can pass directly the X and Y coordinates:
 
 <div class="bpcode">
 <textarea readonly>
