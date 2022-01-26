@@ -55,3 +55,4 @@
   - [Troubleshooting](/troubleshooting)
   - [Common Issues](/commonissues)
   - [Contact](/contact)
+  - [Patch Notes](/patchnotes)
