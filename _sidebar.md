@@ -54,5 +54,5 @@
   - [Frequently Asked Questions](/frequentlyaskedquestions)
   - [Troubleshooting](/troubleshooting)
   - [Common Issues](/commonissues)
-  - [Contact](/contact)
   - [Patch Notes](/patchnotes)
+  - [Contact](/contact)
