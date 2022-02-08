@@ -2,6 +2,10 @@
 
 This section contains the patch notes of the latest updates.
 
+### 1.0.18
+- Updated the Android UMP library to version `2.0.0`.
+- Fixed a crash when calling the `SetPersonalizedAdsEnabled()` method on Android.
+
 ### 1.0.17
 - Added `UAdMobLibrary::ShowAdInspector` C++ method and `Show Ad Inspector` Blueprint node.
 - Fixed IronSource SDK initialization error.
