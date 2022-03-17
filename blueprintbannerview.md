@@ -297,7 +297,7 @@ End Object
 
 ## Error Handling
 Creating, loading and displaying a banner view might fail with different reasons as network error, fill error, configuration error, and other less common errors.
-For this reason, it is good practice to cleanly handle these possible error.
+For this reason, it is good practice to cleanly handle these possible errors.
 
 First, let's create a simple error handler. It prints the error and tries to show the banner view again after a fixed delay.
 
