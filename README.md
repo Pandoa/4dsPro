@@ -15,6 +15,7 @@ All functionalities are available without limitation for Blueprints and / or C++
 - Ad Mediation.
 - GDPR support.
 - iOS 14 app transparency support.
+- Really easy to use.
 
 <div style="text-align:center">
 <img alt="Features" src="_images/Features.png" class="no-shadow"/>
