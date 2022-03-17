@@ -12,7 +12,7 @@ All functionalities are available without limitation for Blueprints and / or C++
 
 ## Features
 - Multiple Ad Formats.
-- Ad Mediation.
+- Ad Mediation. 
 - GDPR support.
 - iOS 14 app transparency support.
 - Really easy to use, no C++ required.
