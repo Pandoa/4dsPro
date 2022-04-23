@@ -48,6 +48,8 @@ End Object
 
 !> It's important to store the Banner View in a variable to prevent it from being garbage collected.
 
+!> Make sure you connect the `Created` pin and not the default execution pin.
+
 ## Loading an Ad
 Now that the Banner is initialized, it's time to load an ad that will be then shown to the user.  
 To load an ad, call the `Load Ad for Banner View` node.
