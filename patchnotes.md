@@ -2,6 +2,18 @@
 
 This section contains the patch notes of the latest updates.
 
+### 1.0.23
+- Added the following methods to comply with Google Play’s Families Policies.
+    - `SetTagForChildDirectedTreatment(EAdMobTagForChildDirectedTreatment Tag)`
+    - `SetTagForUnderAgeOfConsent(EAdMobTagForUnderAgeOfConsent Tag)`
+    - `SetMaxAdContentRating(EAdMobMaxAdContentRating Rating)`
+
+### 1.0.21 - 1.0.22
+- Minor bug fixes.
+
+### 1.0.20
+- Fix crash on updated Android methods when using Unreal Engine 5.
+
 ### 1.0.19 
 - Improved the Fake API used to test the code in Editor.
 
