@@ -2,6 +2,11 @@
 
 This section contains the patch notes of the latest updates.
 
+### 1.0.24
+- Added the following nodes to replace their usual equivalent:
+    - `Read In-App Purchases (Android Updated API)`
+    - `Man an In-App Purchase (Android Updated API)`
+
 ### 1.0.23
 - Added the following methods to comply with Google Play’s Families Policies.
     - `SetTagForChildDirectedTreatment(EAdMobTagForChildDirectedTreatment Tag)`
