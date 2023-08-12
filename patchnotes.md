@@ -2,6 +2,10 @@
 
 This section contains the patch notes of the latest updates.
 
+### 1.0.25 - 1.0.26
+- Fixed a crash when loading an AppOpen ad on Android.
+- Fixed API 31+ dependency.
+
 ### 1.0.24
 - Added the following nodes to replace their usual equivalent:
     - `Read In-App Purchases (Android Updated API)`
