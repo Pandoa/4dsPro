@@ -2,6 +2,19 @@
 
 This section contains the patch notes of the latest updates.
 
+### 1.0.27
+- Upadted Google Ads SDK to version 22.2.0.
+- Updated AdColony adapter to 4.8.0.2.
+- Updated AppLovin adapter to 11.11.1.0.
+- Updated Charboost adapter to 9.4.0.0.
+- Updated i-mobile adapter to 2.3.1.1.
+- Updated InMobi adapter to 10.5.7.1.
+- Updated IronSource adapter to 7.4.0.0.
+- Updated TapJoy adapter to 13.1.2.0.
+- Updated UnityAds SDK to 4.8.0.
+- Updated UnityAds adapter to 4.8.0.0.
+- Updated maio adapter to 1.1.16.2.
+
 ### 1.0.25 - 1.0.26
 - Fixed a crash when loading an AppOpen ad on Android.
 - Fixed API 31+ dependency.
