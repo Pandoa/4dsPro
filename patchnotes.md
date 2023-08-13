@@ -15,6 +15,8 @@ This section contains the patch notes of the latest updates.
   - Updated UnityAds SDK to 4.8.0.
   - Updated UnityAds adapter to 4.8.0.0.
   - Updated maio adapter to 1.1.16.2.
+- iOS
+  - Updated Google Ads SDK to version 10.9.0.
 
 ### 1.0.25 - 1.0.26
 - Fixed a crash when loading an AppOpen ad on Android.
