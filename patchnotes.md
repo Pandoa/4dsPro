@@ -3,7 +3,7 @@
 This section contains the patch notes of the latest updates.
 
 ### 1.0.27
-- Upadted Google Ads SDK to version 22.2.0.
+- Updated Google Ads SDK to version 22.2.0.
 - Updated AdColony adapter to 4.8.0.2.
 - Updated AppLovin adapter to 11.11.1.0.
 - Updated Charboost adapter to 9.4.0.0.
