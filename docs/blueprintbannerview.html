@@ -1,0 +1,2120 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>Banner View | Ads Pro</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="Documentation for the AdsPro plugin available on the Unreal Engine Marketplace.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="icon" href="favicon.png">
+  <meta property="og:title" content="AdsPro Documentation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pandoa.github.io/4dsPro/">
+	<script type="application/ld+json">{"@context":"https://schema.org/","@type":"TechArticle","headline":"Ads Pro for Unreal Engine","name":"Ads Pro for Unreal Engine","description":"Add ads in your Unreal Engine game and start monetizing your game! Follow the examples to quickly get started and monetize in minutes.","author":{"@type":"Person","name":"Pandores","url":"https://www.fab.com/sellers/Pandores"},"publisher":{"@type":"Organization","name":"Pandores Marketplace","logo":{"@type":"ImageObject","url":"https://pandoa.github.io/4dsPro/favicon.svg"}},"proficiencyLevel":"Beginner","datePublished":"2024-10-30T16:02:48.432Z","mainEntityOfPage":"https://pandoa.github.io/4dsPro/"}</script>
+  <style>
+		* {
+			-webkit-font-smoothing: antialiased;
+			-webkit-overflow-scrolling: touch;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			-webkit-text-size-adjust: none;
+			-webkit-touch-callout: none;
+			box-sizing: border-box
+		}
+		body:not(.ready) {
+			overflow: hidden
+		}
+		body:not(.ready) .app-nav,
+		body:not(.ready)>nav,
+		body:not(.ready) [data-cloak] {
+			display: none
+		}
+		div#app {
+			font-size: 30px;
+			font-weight: lighter;
+			margin: 40vh auto;
+			text-align: center
+		}
+		div#app:empty:before {
+			content: "Loading..."
+		}
+		img.emoji {
+			height: 1.2em
+		}
+		img.emoji,
+		span.emoji {
+			vertical-align: middle
+		}
+		span.emoji {
+			font-family: Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+			font-size: 1.2em
+		}
+		.progress {
+			background-color: #ea6f5a;
+			background-color: var(--theme-color, #ea6f5a);
+			height: 2px;
+			left: 0;
+			position: fixed;
+			right: 0;
+			top: 0;
+			transition: width .2s, opacity .4s;
+			width: 0;
+			z-index: 999999
+		}
+		.search .search-keyword,
+		.search a:hover {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.search .search-keyword {
+			font-style: normal;
+			font-weight: 700
+		}
+		body,
+		html {
+			height: 100%
+		}
+		body {
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-font-smoothing: antialiased;
+			color: #c8c8c8;
+			font-family: system-ui, Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+			font-size: 15px;
+			letter-spacing: 0;
+			margin: 0;
+			overflow-x: hidden
+		}
+		img {
+			max-width: 100%
+		}
+		a[disabled] {
+			cursor: not-allowed;
+			opacity: .6
+		}
+		kbd {
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			display: inline-block;
+			font-size: 12px !important;
+			line-height: 12px;
+			margin-bottom: 3px;
+			padding: 3px 5px;
+			vertical-align: middle
+		}
+		li input[type=checkbox] {
+			margin: 0 .2em .25em 0;
+			vertical-align: middle
+		}
+		.app-nav {
+			margin: 25px 60px 0 0;
+			position: absolute;
+			right: 0;
+			text-align: right;
+			z-index: 10
+		}
+		.app-nav.no-badge {
+			margin-right: 25px
+		}
+		.app-nav p {
+			margin: 0
+		}
+		.app-nav>a {
+			margin: 0 1rem;
+			padding: 5px 0
+		}
+		.app-nav li,
+		.app-nav ul {
+			display: inline-block;
+			list-style: none;
+			margin: 0
+		}
+		.app-nav a {
+			color: inherit;
+			font-size: 16px;
+			text-decoration: none;
+			transition: color .3s
+		}
+		.app-nav a.active,
+		.app-nav a:hover {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.app-nav a.active {
+			border-bottom: 2px solid #ea6f5a;
+			border-bottom: 2px solid var(--theme-color, #ea6f5a)
+		}
+		.app-nav li {
+			display: inline-block;
+			margin: 0 1rem;
+			padding: 5px 0;
+			position: relative;
+			cursor: pointer
+		}
+		.app-nav li ul {
+			background-color: #fff;
+			border: 1px solid;
+			border-color: #ddd #ddd #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			display: none;
+			max-height: calc(100vh - 61px);
+			overflow-y: auto;
+			padding: 10px 0;
+			position: absolute;
+			right: -15px;
+			text-align: left;
+			top: 100%;
+			white-space: nowrap
+		}
+		.app-nav li ul li {
+			display: block;
+			font-size: 14px;
+			line-height: 1rem;
+			margin: 8px 14px;
+			white-space: nowrap
+		}
+		.app-nav li ul a {
+			display: block;
+			font-size: inherit;
+			margin: 0;
+			padding: 0
+		}
+		.app-nav li ul a.active {
+			border-bottom: 0
+		}
+		.app-nav li:hover ul {
+			display: block
+		}
+		.github-corner {
+			border-bottom: 0;
+			position: fixed;
+			right: 0;
+			text-decoration: none;
+			top: 0;
+			z-index: 1
+		}
+		.github-corner:hover .octo-arm {
+			animation: octocat-wave .56s ease-in-out
+		}
+		.github-corner svg {
+			color: #3f3f3f;
+			fill: #ea6f5a;
+			fill: var(--theme-color, #ea6f5a);
+			height: 80px;
+			width: 80px
+		}
+		.markdown-section iframe.video {
+			border-radius:14px;
+			border:2px solid black;
+			width: 100%;
+  		aspect-ratio: 16 / 9;
+		}
+		main {
+			display: block;
+			position: relative;
+			width: 100vw;
+			height: 100%;
+			z-index: 0
+		}
+		main.hidden {
+			display: none
+		}
+		.anchor {
+			display: inline-block;
+			text-decoration: none;
+			transition: all .3s
+		}
+		.anchor span {
+			color: #c8c8c8
+		}
+		.anchor:hover {
+			text-decoration: underline
+		}
+		.sidebar {
+			border-right: 1px solid rgba(0, 0, 0, .07);
+			overflow-y: auto;
+			padding: 40px 0 0;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			transition: transform .25s ease-out;
+			width: 300px;
+			z-index: 20
+		}
+		.sidebar>h1 {
+			margin: 0 auto 1rem;
+			font-size: 1.5rem;
+			font-weight: 300;
+			text-align: center;
+			font-weight: 600;
+			border-bottom: 2px solid #080808;
+			padding-bottom: 30px;
+		}
+		.sidebar>h1 a {
+			color: inherit;
+			text-decoration: none
+		}
+		.sidebar>h1 .app-nav {
+			display: block;
+			position: static
+		}
+		.sidebar .sidebar-nav {
+			line-height: 2em;
+			padding-bottom: 40px
+		}
+		.sidebar li.collapse .app-sub-sidebar {
+			display: none
+		}
+		.sidebar ul {
+			margin: 0 0 0 15px;
+			padding: 0
+		}
+		.sidebar li>p {
+			font-weight: 700;
+			margin: 0
+		}
+		.sidebar ul,
+		.sidebar ul li {
+			list-style: none
+		}
+		.sidebar ul li a {
+			border-bottom: none;
+			display: block
+		}
+		.sidebar ul li ul {
+			padding-left: 20px
+		}
+		.sidebar::-webkit-scrollbar {
+			width: 4px
+		}
+		.sidebar::-webkit-scrollbar-thumb {
+			background: transparent;
+			border-radius: 4px
+		}
+		.sidebar:hover::-webkit-scrollbar-thumb {
+			background: hsla(0, 0%, 53.3%, .4)
+		}
+		.sidebar:hover::-webkit-scrollbar-track {
+			background: hsla(0, 0%, 53.3%, .1)
+		}
+		.sidebar-toggle {
+			background-color: transparent;
+			background-color: rgba(63, 63, 63, .8);
+			border: 0;
+			outline: none;
+			padding: 10px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			text-align: center;
+			transition: opacity .3s;
+			width: 284px;
+			z-index: 30;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		body.close .sidebar-toggle {
+		}
+		.sidebar-toggle:hover .sidebar-toggle-button {
+			opacity: .4
+		}
+		.sidebar-toggle span {
+			background-color: #ea6f5a;
+			background-color: var(--theme-color, #ea6f5a);
+			display: block;
+			margin-bottom: 4px;
+			width: 16px;
+			height: 2px
+		}
+		body.sticky .sidebar,
+		body.sticky .sidebar-toggle {
+			position: fixed
+		}
+		.content {
+			padding-top: 60px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 300px;
+			transition: left .25s ease
+		}
+		.markdown-section {
+			margin: 0 auto;
+			max-width: 80%;
+			padding: 30px 15px 40px;
+			position: relative
+		}
+		.markdown-section>* {
+			box-sizing: border-box;
+			font-size: inherit
+		}
+		.markdown-section>:first-child {
+			margin-top: 0 !important
+		}
+		.markdown-section hr {
+			border: none;
+			border-bottom: 1px solid #eee;
+			margin: 2em 0
+		}
+		.markdown-section iframe {
+			border: 1px solid #eee;
+			width: 1px;
+			min-width: 100%
+		}
+		.markdown-section table {
+			border-collapse: collapse;
+			border-spacing: 0;
+			display: block;
+			margin-bottom: 1rem;
+			overflow: auto;
+			width: 100%
+		}
+		.markdown-section th {
+			font-weight: 700
+		}
+		.markdown-section td,
+		.markdown-section th {
+			border: 1px solid #ddd;
+			padding: 6px 13px
+		}
+		.markdown-section tr {
+			border-top: 1px solid #ccc
+		}
+		.markdown-section p.tip,
+		.markdown-section tr:nth-child(2n) {
+			background-color: #f8f8f8
+		}
+		.markdown-section p.tip {
+			border-bottom-right-radius: 2px;
+			border-left: 4px solid #f66;
+			border-top-right-radius: 2px;
+			margin: 2em 0;
+			padding: 12px 24px 12px 30px;
+			position: relative
+		}
+		code.lang-ini span.token.section-name.selector {
+			color: #bbb;
+		}
+		.markdown-section p.tip:before {
+			background-color: #f66;
+			border-radius: 100%;
+			color: #3f3f3f;
+			content: "!";
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+			font-size: 14px;
+			font-weight: 700;
+			left: -12px;
+			line-height: 20px;
+			position: absolute;
+			height: 20px;
+			width: 20px;
+			text-align: center;
+			top: 14px
+		}
+		.markdown-section p.tip code {
+			background-color: #efefef
+		}
+		.markdown-section p.tip em {
+			color: #c8c8c8
+		}
+		.markdown-section p.warn {
+			background: rgba(234, 111, 90, .1);
+			border-radius: 2px;
+			padding: 1rem
+		}
+		.markdown-section ul.task-list>li {
+			list-style-type: none
+		}
+		body.close .sidebar {
+			transform: translateX(-300px)
+		}
+		body.close .sidebar-toggle {
+			width: auto
+		}
+		body.close .content {
+			left: 0
+		}
+		@media print {
+			.app-nav,
+			.github-corner,
+			.sidebar,
+			.sidebar-toggle {
+				display: none
+			}
+		}
+		@media screen and (max-width:768px) {
+			.github-corner,
+			.sidebar,
+			.sidebar-toggle {
+				position: fixed
+			}
+			.app-nav {
+				margin-top: 16px
+			}
+			.app-nav li ul {
+				top: 30px
+			}
+			main {
+				height: auto;
+				min-height: 100vh;
+				overflow-x: hidden
+			}
+			.sidebar {
+				left: -300px;
+				transition: transform .25s ease-out
+			}
+			.content {
+				left: 0;
+				max-width: 100vw;
+				position: static;
+				padding-top: 20px;
+				transition: transform .25s ease
+			}
+			.app-nav,
+			.github-corner {
+				transition: transform .25s ease-out
+			}
+			.sidebar-toggle {
+				background-color: transparent;
+				width: auto;
+				padding: 30px 30px 10px 10px
+			}
+			body.close .sidebar {
+				transform: translateX(300px)
+			}
+			body.close .sidebar-toggle {
+				background-color: rgba(63, 63, 63, .8);
+				transition: background-color 1s;
+				width: 284px;
+				padding: 10px
+			}
+			body.close .content {
+				transform: translateX(300px)
+			}
+			body.close .app-nav,
+			body.close .github-corner {
+				display: none
+			}
+			.github-corner:hover .octo-arm {
+				animation: none
+			}
+			.github-corner .octo-arm {
+				animation: octocat-wave .56s ease-in-out
+			}
+		}
+		@keyframes octocat-wave {
+			0%,
+			to {
+				transform: rotate(0)
+			}
+			20%,
+			60% {
+				transform: rotate(-25deg)
+			}
+			40%,
+			80% {
+				transform: rotate(10deg)
+			}
+		}
+		section.cover {
+			position: relative;
+			align-items: center;
+			background-position: 50%;
+			background-repeat: no-repeat;
+			background-size: cover;
+			min-height: 100vh;
+			width: 100%;
+			display: none
+		}
+		section.cover.show {
+			display: flex
+		}
+		section.cover.has-mask .mask {
+			background-color: #3f3f3f;
+			opacity: .8;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%
+		}
+		section.cover .cover-main {
+			flex: 1;
+			margin: 0 16px;
+			text-align: center;
+			position: relative
+		}
+		section.cover a {
+			color: inherit
+		}
+		section.cover a,
+		section.cover a:hover {
+			text-decoration: none
+		}
+		section.cover p {
+			line-height: 1.5rem;
+			margin: 1em 0
+		}
+		section.cover h1 {
+			color: inherit;
+			font-size: 2.5rem;
+			font-weight: 300;
+			margin: .625rem 0 2.5rem;
+			position: relative;
+			text-align: center
+		}
+		section.cover h1 a {
+			display: block
+		}
+		section.cover h1 small {
+			bottom: -.4375rem;
+			font-size: 1rem;
+			position: absolute
+		}
+		section.cover blockquote {
+			font-size: 1.5rem;
+			text-align: center
+		}
+		section.cover ul {
+			line-height: 1.8;
+			list-style-type: none;
+			margin: 1em auto;
+			max-width: 500px;
+			padding: 0
+		}
+		section.cover .cover-main>p:last-child a {
+			border-radius: 2rem;
+			border: 1px solid #ea6f5a;
+			border-color: var(--theme-color, #ea6f5a);
+			box-sizing: border-box;
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a);
+			display: inline-block;
+			font-size: 1.05rem;
+			letter-spacing: .1rem;
+			margin: .5rem 1rem;
+			padding: .75em 2rem;
+			text-decoration: none;
+			transition: all .15s ease
+		}
+		section.cover .cover-main>p:last-child a:last-child {
+			background-color: #ea6f5a;
+			background-color: var(--theme-color, #ea6f5a);
+			color: #fff
+		}
+		section.cover .cover-main>p:last-child a:last-child:hover {
+			color: inherit;
+			opacity: .8
+		}
+		section.cover .cover-main>p:last-child a:hover {
+			color: inherit
+		}
+		section.cover blockquote>p>a {
+			border-bottom: 2px solid #ea6f5a;
+			border-bottom: 2px solid var(--theme-color, #ea6f5a);
+			transition: color .3s
+		}
+		section.cover blockquote>p>a:hover {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.sidebar,
+		body {
+			background-color: #3f3f3f
+		}
+		.sidebar {
+			color: #c8c8c8
+		}
+		.sidebar li {
+			margin: 6px 15px 6px 0
+		}
+		.sidebar ul li a {
+			color: #c8c8c8;
+			font-size: 14px;
+			overflow: hidden;
+			text-decoration: none;
+			text-overflow: ellipsis;
+			white-space: nowrap
+		}
+		.sidebar ul li a:hover {
+			text-decoration: underline
+		}
+		.sidebar ul li ul {
+			padding: 0
+		}
+		.sidebar ul li.active>a {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a);
+			font-weight: 600
+		}
+		.markdown-section h1,
+		.markdown-section h2,
+		.markdown-section h3,
+		.markdown-section h4,
+		.markdown-section strong {
+			color: #657b83;
+			font-weight: 600
+		}
+		.markdown-section a {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a);
+			font-weight: 600
+		}
+		.markdown-section h1 {
+			font-size: 2rem;
+			margin: 0 0 1rem
+		}
+		.markdown-section h2 {
+			font-size: 1.75rem;
+			margin: 45px 0 .8rem
+		}
+		.markdown-section h3 {
+			font-size: 1.5rem;
+			margin: 40px 0 .6rem
+		}
+		.markdown-section h4 {
+			font-size: 1.25rem
+		}
+		.markdown-section h5 {
+			font-size: 1rem
+		}
+		.markdown-section h6 {
+			color: #777;
+			font-size: 1rem
+		}
+		.markdown-section figure,
+		.markdown-section ol,
+		.markdown-section p,
+		.markdown-section ul {
+			margin: 1.2em 0
+		}
+		.markdown-section ol,
+		.markdown-section p,
+		.markdown-section ul {
+			line-height: 1.6rem;
+			word-spacing: .05rem
+		}
+		.markdown-section ol,
+		.markdown-section ul {
+			padding-left: 1.5rem
+		}
+		.markdown-section blockquote {
+			border-left: 4px solid #ea6f5a;
+			border-left: 4px solid var(--theme-color, #ea6f5a);
+			color: #858585;
+			margin: 2em 0;
+			padding-left: 20px
+		}
+		.markdown-section blockquote p {
+			font-weight: 600;
+			margin-left: 0
+		}
+		.markdown-section iframe {
+			margin: 1em 0
+		}
+		.markdown-section em {
+			color: #f5feff;
+		}
+		.markdown-section code {
+			background-color: #282828;
+			border-radius: 2px;
+			color: #657b83;
+			font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace, Roboto Mono, Monaco, courier, monospace;
+			margin: 0 2px;
+			padding: 3px 5px;
+			white-space: pre-wrap
+		}
+		.markdown-section>:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) code {
+			font-size: .8rem
+		}
+		.markdown-section pre {
+			-moz-osx-font-smoothing: initial;
+			-webkit-font-smoothing: initial;
+			background-color: #282828;
+			font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace, Roboto Mono, Monaco, courier, monospace;
+			line-height: 1.5rem;
+			margin: 1.2em 0;
+			overflow: auto;
+			padding: 0 1.4rem;
+			position: relative;
+			word-wrap: normal
+		}
+		.token.cdata,
+		.token.comment,
+		.token.doctype,
+		.token.prolog {
+			color: #8e908c
+		}
+		.token.namespace {
+			opacity: .7
+		}
+		.token.boolean,
+		.token.number {
+			color: #c76b29
+		}
+		.token.punctuation {
+			color: #525252
+		}
+		.token.property {
+			color: #c08b30
+		}
+		.token.tag {
+			color: #2973b7
+		}
+		.token.string {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.token.selector {
+			color: #6679cc
+		}
+		.token.attr-name {
+			color: #2973b7
+		}
+		.language-css .token.string,
+		.style .token.string,
+		.token.entity,
+		.token.url {
+			color: #22a2c9
+		}
+		.token.attr-value,
+		.token.control,
+		.token.directive,
+		.token.unit {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.token.keyword {
+			color: #e96900
+		}
+		.token.atrule,
+		.token.regex,
+		.token.statement {
+			color: #22a2c9
+		}
+		.token.placeholder,
+		.token.variable {
+			color: #3d8fd1
+		}
+		.token.deleted {
+			text-decoration: line-through
+		}
+		.token.inserted {
+			border-bottom: 1px dotted #202746;
+			text-decoration: none
+		}
+		.token.italic {
+			font-style: italic
+		}
+		.token.bold,
+		.token.important {
+			font-weight: 700
+		}
+		.token.important {
+			color: #c94922
+		}
+		.token.entity {
+			cursor: help
+		}
+		.markdown-section pre>code {
+			-moz-osx-font-smoothing: initial;
+			-webkit-font-smoothing: initial;
+			background-color: #282828;
+			border-radius: 2px;
+			color: #657b83;
+			display: block;
+			font-family: Monaco, Roboto Mono, courier, monospace;
+			font-size: .8rem;
+			line-height: inherit;
+			margin: 0 2px;
+			max-width: inherit;
+			overflow: inherit;
+			padding: 2.2em 5px;
+			white-space: inherit
+		}
+		.markdown-section code:after,
+		.markdown-section code:before {
+			letter-spacing: .05rem
+		}
+		code .token {
+			-moz-osx-font-smoothing: initial;
+			-webkit-font-smoothing: initial;
+			min-height: 1.5rem;
+			position: relative;
+			left: auto
+		}
+		pre:after {
+			color: #ccc;
+			content: attr(data-lang);
+			font-size: .6rem;
+			font-weight: 600;
+			height: 15px;
+			line-height: 15px;
+			padding: 5px 10px 0;
+			position: absolute;
+			right: 0;
+			text-align: right;
+			top: 0
+		}
+		.markdown-section p.tip {
+			background-color: #282828;
+			color: #657b83
+		}
+		input[type=search] {
+			background: #4f4f4f;
+			border-color: #4f4f4f;
+			color: #c8c8c8
+		}
+	</style>
+	<style>
+		:root {
+			--theme-color: #E6AD43;
+		}
+		html,
+		body,
+		.content {
+			background: #101010
+		}
+		.markdown-section a {
+			color: #E6AD43;
+			font-weight: 400
+		}
+		.sidebar {
+			background-color: #202020
+		}
+		textarea {
+			display: none
+		}
+		.sidebar a.section-link {
+			font-size: 0.8em
+		}
+		.app-sub-sidebar li>a.section-link {
+			color: var(--theme-color)
+		}
+		.app-sub-sidebar li {
+			margin: 0
+		}
+		.markdown-section code {
+			color: var(--theme-color);
+		}
+		.markdown-section h3 {
+			margin: 20px 0 0
+		}
+		.markdown-section p.tip {
+			border-left: 4px solid var(--theme-color);
+			color: #bbb;
+			border-radius: 6px
+		}
+		.markdown-section p.tip:before {
+			background: var(--theme-color)
+		}
+		.markdown-section p.tip code {
+			color: var(--theme-color);
+			background-color: #333
+		}
+		.markdown-section blockquote p {
+			padding: 10px;
+			color: white;
+		}
+		.markdown-section blockquote {
+			background: linear-gradient(0.25turn, #3953ABaa, #039BE5aa, #E6AD43);
+			border-radius: 4px;
+			box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
+		}
+		.markdown-section pre {
+			border-radius: 12px
+		}
+		.markdown-section pre>code {
+			color: #eee;
+			line-height: 18px
+		}
+		.markdown-section p.tip,
+		.markdown-section tr:nth-child(2n) {
+			background: #222
+		}
+		.markdown-section p.warn {
+			border: 1px solid #bF7F7F;
+			color: white;
+			border-radius: 6px
+		}
+		.markdown-section td,
+		.markdown-section th {
+			border: 1px solid #555
+		}
+		.token.class-name {
+			color: #70d997
+		}
+		.token.function {
+			color: #efefbf
+		}
+		.token.keyword {
+			color: #569cd6
+		}
+		.token.comment {
+			color: #aaa
+		}
+		.token.punctuation {
+			color: #999
+		}
+		.token.attr-name {
+			color: #4993e7
+		}
+		.token.tag {
+			color: #a8caff
+		}
+		.token.string {
+			color: magenta
+		}
+		.sidebar ul>li>a {
+			color: #888
+		}
+		.token.punctuation.annotation {
+			color: #666
+		}
+		.sidebar-toggle {
+			width: 300px;
+			background: #555;
+			transition: width 0.2s linear
+		}
+		.sidebar-nav>ul>li>ul>li {
+			margin: 0
+		}
+		.token.attr-value,
+		.token.control,
+		.token.unit {
+			color: magenta
+		}
+		.token.directive {
+			color: #ADC8D6
+		}
+		body.close .sidebar-toggle {
+			width: 36px
+		}
+		h4 {
+			margin-block-end: 0.33em;
+			margin-block-start: 0.66em
+		}
+		h5 {
+			margin-block-start: 1em;
+			margin-block-end: 0
+		}
+		.markdown-section h5 {
+			font-size: 1.1rem
+		}
+		thead {
+			background: #333
+		}
+		.markdown-section code {
+			border-radius: 8px !important;
+		}
+		.markdown-section p.tip {
+			padding-left: 60px;
+		}
+		.markdown-section p.tip:before {
+			font-size: 10px;
+			font-weight: bolder;
+			left: 20px;
+			top: calc(50% - 10px);
+			line-height: 15px;
+			height: 20px;
+			width: 20px;
+			content: url(_svgs/warn.svg);
+			background: none;
+		}
+		.anchor span {
+			font-weight: 600
+		}
+		::-webkit-scrollbar {
+			width: 6px;
+			height: 6px;
+		}
+		::-webkit-scrollbar-track {
+			background: none;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #777;
+			border-radius: 6px;
+		}
+		::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+		::marker {
+			color: #999;
+			font-weight: 100
+		}
+		@media screen and (max-width: 768px) {
+			.sidebar-toggle {
+				width: auto
+			}
+		}
+		.cpp>pre,
+		img {
+			border-radius: 16px;
+			box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+			border: 1px solid black;
+		}
+		.switcher,
+		img,
+		.sidebar {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-user-drag: none;
+			-khtml-user-drag: none;
+			-moz-user-drag: none;
+			-o-user-drag: none;
+			user-drag: none;
+		}
+		.bpcode {
+			align-items: center;
+			display: flex;
+			flex-direction: column;
+		}
+		.bpcode>button {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			border: 1px solid white;
+			background: rgba(18, 18, 18, 0.1);
+			color: white;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 150px;
+			height: 40px;
+			position: relative;
+			top: -40px;
+			opacity: 0;
+			transition: opacity 0.2s ease-in-out, top 0.2s ease-in-out, background 0.2s ease-in-out;
+		}
+		.bpcode:hover>button {
+			opacity: 0.7;
+			top: -60px;
+		}
+		.bpcode:hover>button:hover {
+			background: rgba(255, 255, 255, 0.05)
+		}
+		.bpcode:hover>button:active {
+			background: rgba(255, 255, 255, 0.1)
+		}
+		.adblock-container {
+			position: fixed;
+			z-index: 9999;
+			border: 1px solid #bF7F7F;
+			color: white;
+			background: #281b19;
+			padding: 25px;
+			right: 20px;
+			top: 20px;
+			filter: drop-shadow(0 0 0.75rem black);
+			display: none;
+			border-radius: 10px;
+		}
+		.adblock-container>div:first-child {
+			font-weight: bolder; 
+			font-size: 1.5rem;
+			margin-bottom:10px;
+			font-size: 18px;
+			margin: 0;
+			display: block;
+		}
+		.adblock-container>div {
+			color: #ddd;
+		}
+		.adblock-container>button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: none;
+			border: none;
+			color: #bF7F7F;
+			cursor: pointer;
+		}
+		.code-switcher {
+			background: #333;
+			padding: 20px 30px;
+			border-radius: 12px;
+			position: relative;
+			border-top-right-radius: 0;
+			margin: 40px 0;
+		}
+		.switcher {
+			position: absolute;
+			right: 0;
+			top: -24px;
+		}
+		.sw-bp,
+		.sw-cpp {
+			padding: 5px 10px;
+			background: #333;
+			color: #bbb;
+			transition: background 0.2s ease-in-out;
+		}
+		.sw-bp:hover,
+		.sw-cpp:hover {
+			background: #222;
+			cursor: pointer;
+		}
+		.sw-cpp {
+			border-top-right-radius: 5px;
+			-border-bottom-right-radius: 5px;
+		}
+		.sw-bp {
+			border-top-left-radius: 5px;
+			-border-bottom-left-radius: 5px;
+		}
+		.code-switcher .bp {
+			margin: 20px 10px;
+		}
+		.code-switcher.show-cpp-false .bp,
+		.code-switcher.show-cpp-true .cpp {
+			display: block;
+		}
+		.code-switcher.show-cpp-false .cpp,
+		.code-switcher.show-cpp-true .bp {
+			display: none;
+		}
+		.code-switcher.show-cpp-false .switcher .sw-cpp,
+		.code-switcher.show-cpp-true .switcher .sw-bp {
+			background: #202020;
+		}
+		.centered {
+			text-align: center;
+			margin: 30px 0;
+		}
+		.token.ue-macro {
+			color: #ADA8E6;
+		}
+		.token.ue-class {
+			color: #70d997;
+		}
+		.bp .bpcode {
+			margin-bottom: 0;
+			position: relative;
+		}
+		.bp .bpcode>button {
+			position: absolute;
+			bottom: 20px;
+			top: unset;
+		}
+		input:focus-visible {
+			outline: none;
+		}
+		table {
+			border: 1px solid #555;
+			border-collapse: collapse;
+			-border-radius: 14px;
+		}
+		.markdown-section table {
+			width: fit-content;
+		}
+		.markdown-section td:last-child,
+		.markdown-section th:last-child {
+			border-right: none;
+		}
+		.markdown-section td:first-child,
+		.markdown-section th:first-child {
+			border-left: none;
+		}
+		.markdown-section th,
+		.markdown-section tr {
+			border-top: none;
+		}
+		.markdown-section tr:last-child,
+		.markdown-section tr:last-child>td {
+			border-bottom: none;
+		}
+		.markdown-section pre>code,
+		.markdown-section pre {
+			background-color: #181818;
+		}
+		.fb-elem>img {
+			box-shadow: none;
+		}
+		.markdown-section td {
+			padding: 10px 15px;
+		}
+		.work-container {
+			display: none
+		}
+		.ue-button:hover {
+			filter: invert(0);
+		}
+		.markdown-section p.warn {
+			border-radius: 12px;
+		}
+		.ue-button {
+			transition: 0.25s ease-in-out;
+			border: 3px solid #f2f2f2;
+			font-weight: bolder !important;
+			background: #ddd;
+			border-radius: 8px;
+			color: black !important;
+			text-decoration: none;
+			padding: 20px 22px;
+			margin-right: 10px;
+			font-size: 1.2rem;
+			filter: invert(1) drop-shadow(0 0 0.75rem #00000055);
+		}
+		.ue-button img {
+			margin-left: 5px;
+			border-radius: 0;
+			border: none;
+			box-shadow: none;
+			vertical-align: middle;
+		}
+		.work-container {
+			position: fixed;
+			z-index: 9999;
+			border: 1px solid #bFbF7F;
+			color: white;
+			background: #282b19;
+			padding: 20px;
+			right: 10px;
+			top: 10px;
+		}
+		.work-container>h1 {
+			font-size: 18px;
+			margin: 0;
+			display: block;
+		}
+		.work-container>div {
+			color: #ddd;
+		}
+		.work-container>button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: none;
+			border: none;
+			color: #bFbF7F;
+			cursor: pointer;
+		}
+		@media (max-width: 600px) {
+			.code-switcher {
+				padding: 8px 10px;
+			}
+			.markdown-section {
+				max-width: 95%
+			}
+		}
+		@media (max-width: 660px) {
+			a .fb {
+				border-radius: 0;
+				border-width: 0;
+				width: 70px;
+				height: 70px;
+			}
+			a .fb-txt {
+				font-size: 1rem;
+				display: none;
+			}
+			a.fb-elem {
+				margin: 5px;
+			}
+		}
+		@media (max-width: 330px) {
+			a .fb {
+				width: 50px;
+				height: 50px;
+			}
+		}
+		.fb {
+			border-radius: 0;
+			border-width: 0;
+			width: 100px;
+			height: 100px;
+		}
+		.fb-elem {
+			display: flex;
+			flex-direction: column;
+			justify-content: middle;
+			align-items: center;
+			transition: 0.3s ease-in-out;
+			cursor: pointer;
+			margin: 20px 3%;
+			text-decoration: none !important;
+		}
+		.fb-txt {
+			margin-top: 10px;
+			font-size: 1.1rem;
+		}
+		.fb-elem:hover {
+			transform: scale(1.05);
+		}
+		.fb-f-cont {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			flex-wrap: wrap;
+			margin: 0 8%;
+		}
+	html, body, .content {background: #121212}
+	textarea {display:none}
+	.sidebar {background-color: #242424}
+	.sidebar a.section-link {font-size: 0.8em}
+	.app-sub-sidebar li {margin:0}
+	.app-sub-sidebar li > a.section-link {color:#29829b}
+	:root {--theme-color:#afd8e6}
+	.markdown-section code {color: #95abb3;}
+	.markdown-section h3 { margin: 20px 0 0 }
+	.markdown-section p.tip {border-left: 4px solid #29829b;color:#859ba3;border-radius:4px}
+	.markdown-section p.tip:before {background: #29829b}
+	.markdown-section p.tip code {color:#225; background-color: #ccc}
+	.markdown-section blockquote p {padding: 10px}
+	.markdown-section blockquote {background: #202020;border-radius:4px}
+	.markdown-section p.warn {border: 1px solid #bF7F7F; color:white;border-radius:4px}
+	.markdown-section pre {border-radius:4px}
+	.markdown-section pre>code {color: #ddd}
+	.markdown-section p.tip, .markdown-section tr:nth-child(2n) {background:#222}
+	.token.class-name {color: #70d997}
+	.markdown-section td, .markdown-section th {border:1px solid #555}
+	.token.function {color: #efefbf}
+	.token.keyword {color: #569cd6}
+	.token.comment {color: #9f9f9f}
+	.token.punctuation{color: #999}
+	.token.attr-name {color: #4993e7 }
+	.sidebar ul>li>a {color: #888}
+	.sidebar-toggle {width: 300px; background: #555;transition: width 0.2s linear}
+	.sidebar-nav > ul > li > ul > li  {margin:0}
+	body.close .sidebar-toggle {width: 36px}
+	h4 {margin-block-end: 0.33em;margin-block-start: 0.66em}
+	h5 {margin-block-start: 1em;margin-block-end: 0}
+	thead{background: #333}
+	/* width */
+    ::-webkit-scrollbar {
+      width: 6px;
+	  height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #777;
+	  border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+	::marker {color: #999;font-weight:100}
+	@media screen and (max-width: 768px) {
+		.sidebar-toggle {width:auto}
+	}
+	
+	img 
+	{
+		border-radius:8px;
+		border: 1px solid #121212;
+		box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+	}
+	
+	.no-shadow 
+	{
+		box-shadow: none;
+		border:none;
+	}
+	
+	img, .sidebar {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		user-drag: none;
+	}
+	
+	.bpcode {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.bpcode > button {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		
+		border: 1px solid white; 
+		background: rgba(18,18,18, 0.1);
+		color:white;
+		padding:10px 20px;
+		border-radius:5px;
+		cursor:pointer;
+		
+		width: 150px;
+		height: 40px;
+		position: relative;
+		top: -40px;		
+		
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out, top 0.2s ease-in-out;
+	}
+	
+	.bpcode:hover > button {
+		opacity: 0.7;
+		top: -60px;		
+	}
+	
+	.adblock-container {
+		position: fixed;
+		z-index: 9999;
+		border: 1px solid #bF7F7F; 
+		color:white;
+		background: #281b19;
+		padding: 20px;
+		right: 10px;
+		top: 10px;
+		
+		display: none;
+	}
+	
+	.adblock-container > h1 {
+		font-size: 18px;
+		margin:0;
+		display:block;
+	}
+	
+	.adblock-container > div {
+		color: #ddd;
+	}
+	
+	.adblock-container > button {
+		position: absolute;
+		top:0;
+		right:0;
+		background: none;
+		border: none;
+		color: #bF7F7F;
+		cursor: pointer;
+	}
+	
+  </style>
+<style type="text/css">.docsify-pagination-container{display:flex;flex-wrap:wrap;justify-content:space-between;overflow:hidden;margin:5em 0 1em;border-top:1px solid rgba(0,0,0,.07)}.pagination-item{margin-top:2.5em}.pagination-item a,.pagination-item a:hover{text-decoration:none}.pagination-item a{color:currentColor}.pagination-item a:hover .pagination-item-title{text-decoration:underline}.pagination-item:not(:last-child) a .pagination-item-label,.pagination-item:not(:last-child) a .pagination-item-subtitle,.pagination-item:not(:last-child) a .pagination-item-title{opacity:.3;transition:all .2s}.pagination-item:last-child .pagination-item-label,.pagination-item:not(:last-child) a:hover .pagination-item-label{opacity:.6}.pagination-item:not(:last-child) a:hover .pagination-item-title{opacity:1}.pagination-item-label{font-size:.8em}.pagination-item-label>*{line-height:1;vertical-align:middle}.pagination-item-label svg{height:.8em;width:auto;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1px}.pagination-item--next{margin-left:auto;text-align:right}.pagination-item--next svg{margin-left:.5em}.pagination-item--previous svg{margin-right:.5em}.pagination-item-title{font-size:1.6em}.pagination-item-subtitle{text-transform:uppercase;opacity:.3}</style></head>
+<body data-page="blueprintbannerview.md" class="ready sticky">
+<script>
+	function copyBlueprintCode(button) {
+		button.innerHTML = "Copied!";
+		setTimeout(() => { button.innerHTML = "Copy Code" }, 5000);
+		var c = button.parentNode.children[0];
+		c.style.display = "block";
+		c.select();
+		document.execCommand("copy");
+		c.style.display = "none";
+	}</script>
+<script>
+	var bShowCPP = false;
+	function switchCode() {
+		bShowCPP = !bShowCPP;
+		var elems = document.getElementsByClassName('code-switcher');
+		for (var i = 0; i < elems.length; ++i) {
+			elems[i].classList.remove('show-cpp-' + !bShowCPP);
+			elems[i].classList.add('show-cpp-' + bShowCPP);
+		}
+		setCookie('bShowCPP', bShowCPP, 7);
+	}
+	function switchCpp() {
+		bShowCPP = false;
+		switchCode();
+	}
+	function switchBp() {
+		bShowCPP = true;
+		switchCode();
+	}
+	function setCookie(name, value, days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie = name + "=" + value + expires + "; path=/";
+	}
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+		}
+		return null;
+	}
+	function changeSelectedCode() {
+		setTimeout(() => {
+			bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+			switchCode();
+		}, 0);
+	}
+	bShowCPP = JSON.parse(getCookie('bShowCPP'));
+</script>
+<main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><h1 class="app-name"><a class="app-name-link" data-nosearch="" href=".">Ads Pro</a></h1><div class="sidebar-nav"><ul><li>Ads Pro<ul><li><a href="" title="Plugin details">Plugin details</a></li></ul></li><li>Configuration<ul><li><a href="getstarted" title="Get Started">Get Started</a></li><li><a href="cppsetup" title="C++ Setup">C++ Setup</a></li><li><a href="buildplugin" title="Rebuild the Plugin">Rebuild the Plugin</a></li></ul></li><li>GDPR &amp; Tracking<ul><li><a href="gdpr" title="GDPR">GDPR</a></li><li><a href="apptrackingtransparency" title="App Tracking Transparency">App Tracking Transparency</a></li></ul></li><li>Ads<ul><li><a href="appopen" title="App Open">App Open</a></li><li><a href="bannerview" title="Banner View">Banner View</a></li><li><a href="interstitialad" title="Interstitial Ad">Interstitial Ad</a></li><li><a href="rewardedvideo" title="Rewarded Video">Rewarded Video</a></li></ul></li><li>Blueprints Examples<ul><li><a href="blueprintgdpr" title="GDPR">GDPR</a></li><li><a href="blueprintappopen" title="App Open">App Open</a></li><li class="active"><a href="blueprintbannerview" title="Banner View">Banner View</a><ul class="app-sub-sidebar"><li><a class="section-link" href="blueprintbannerview.html#creating-a-banner-view" title="Creating a Banner View">Creating a Banner View</a></li><li><a class="section-link" href="blueprintbannerview.html#loading-an-ad" title="Loading an Ad">Loading an Ad</a></li><li><a class="section-link" href="blueprintbannerview.html#showing-the-banner" title="Showing the Banner">Showing the Banner</a></li><li><a class="section-link" href="blueprintbannerview.html#moving-the-banner" title="Moving the Banner">Moving the Banner</a></li><li><a class="section-link" href="blueprintbannerview.html#error-handling" title="Error Handling">Error Handling</a></li></ul></li><li><a href="blueprintinterstitialad" title="Interstitial Ad">Interstitial Ad</a></li><li><a href="blueprintrewardedvideo" title="Rewarded Video">Rewarded Video</a></li></ul></li><li>C++ Examples<ul><li><a href="cppgdpr" title="GDPR">GDPR</a></li><li><a href="cppappopen" title="App Open">App Open</a></li><li><a href="cppbannerview" title="Banner View">Banner View</a></li><li><a href="cppinterstitialad" title="Interstitial Ad">Interstitial Ad</a></li><li><a href="cpprewardedvideo" title="Rewarded Video">Rewarded Video</a></li></ul></li><li>Mediation<ul><li><a href="adcolony" title="AdColony">AdColony</a></li><li><a href="adfalcon" title="AdFalcon">AdFalcon</a></li><li><a href="applovin" title="AppLovin">AppLovin</a></li><li><a href="chartboost" title="Chartboost">Chartboost</a></li><li><a href="facebook" title="Facebook">Facebook</a></li><li><a href="flurry" title="Flurry">Flurry</a></li><li><a href="fyber" title="Fyber">Fyber</a></li><li><a href="imobile" title="i-mobile">i-mobile</a></li><li><a href="inmobi" title="InMobi">InMobi</a></li><li><a href="ironsource" title="ironSource">ironSource</a></li><li><a href="leadbolt" title="Leadbolt">Leadbolt</a></li><li><a href="lguad" title="LG U+AD">LG U+AD</a></li><li><a href="maio" title="maio">maio</a></li><li><a href="mobfox" title="MobFox">MobFox</a></li><li><a href="mopub" title="MoPub">MoPub</a></li><li><a href="mytarget" title="myTarget">myTarget</a></li><li><a href="nend" title="nend">nend</a></li><li><a href="tapjoy" title="TapJoy">TapJoy</a></li><li><a href="tencent" title="Tencent">Tencent</a></li><li><a href="unityads" title="Unity Ads">Unity Ads</a></li><li><a href="verizonmedia" title="Verizon Media">Verizon Media</a></li><li><a href="vpon" title="Vpon">Vpon</a></li><li><a href="vungle" title="Vungle">Vungle</a></li><li><a href="zucks" title="Zucks">Zucks</a></li><li><a href="others" title="Others">Others</a></li></ul></li><li>Support<ul><li><a href="frequentlyaskedquestions" title="Frequently Asked Questions">Frequently Asked Questions</a></li><li><a href="troubleshooting" title="Troubleshooting">Troubleshooting</a></li><li><a href="commonissues" title="Common Issues">Common Issues</a></li><li><a href="patchnotes" title="Patch Notes">Patch Notes</a></li><li><a href="contact" title="Contact">Contact</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h1 id="banner-view-blueprint-examples"><a href="blueprintbannerview.html#banner-view-blueprint-examples" data-id="banner-view-blueprint-examples" class="anchor"><span>Banner View - Blueprint Examples</span></a></h1><p>This section contains examples on how to use Banner Views with Blueprints.</p><h2 id="creating-a-banner-view"><a href="blueprintbannerview.html#creating-a-banner-view" data-id="creating-a-banner-view" class="anchor"><span>Creating a Banner View</span></a></h2><p>To use a Banner view, we first have to create one. You can create a Banner View with the <code>Create Banner View</code> Blueprint node.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_8"
+   ProxyFactoryFunctionName="CreateAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobCreateAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobCreateAdView"'
+   NodePosX=-800
+   NodePosY=-1696
+   NodeGuid=87B6664F41272B055C9F73B12DA33E36
+   CustomProperties Pin (PinId=994C9DE7400D947B5E20938D001B400F,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_Event_0 118586BB4EA9470F8087FD820D560415,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F43FAE064C5915566DEDBDAD578E0494,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9B693FA54A713249472CE8B30A4BAC18,PinName="Created",PinFriendlyName=NSLOCTEXT("", "8CBE6C4B44B644C3845CA9BC4A352116", "Created"),PinToolTip="The AdView has been created.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_VariableSet_0 168494BB43CB42FB39BED98CA1A9A853,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9BAFEE9A465E22ED508B42B36C626933,PinName="Error",PinFriendlyName=NSLOCTEXT("", "7AB01FA24DCDF693BFA31EAA44D605BB", "Error"),PinToolTip="An error occured while creating the AdView.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8D11D03E471CA35543C7A28DF24C28F5,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=87B107BB4EADB1C49B31608E6C80FE17,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 063961514829D5E2972FE69D6E17AE14,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C76722AB4806AFBB835B679983DFBBA6,PinName="AdUnit",PinToolTip="Ad Unit\nString\n\nThe ad unit used for the AdView.",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="ca-app-pub-3940256099942544/6300978111",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6FC75BAA446D72F43EDC29B1456B7869,PinName="Width",PinToolTip="Width\nInteger\n\nThe width of the AdView.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="250",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=16C611A7472FAE4300BB229B63185514,PinName="Height",PinToolTip="Height\nInteger\n\nThe height of the AdView.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="350",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_Event Name="K2Node_Event_0"
+   EventReference=(MemberParent=Class'"/Script/Engine.Actor"',MemberName="ReceiveBeginPlay")
+   bOverrideFunction=True
+   NodePosX=-1008
+   NodePosY=-1696
+   NodeGuid=E103177E431E79EF17447CBEEF6D0253
+   CustomProperties Pin (PinId=6148E00247D433F976646085B91B91C2,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=Class'"/Script/Engine.Actor"',MemberName="ReceiveBeginPlay"),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=118586BB4EA9470F8087FD820D560415,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 994C9DE7400D947B5E20938D001B400F,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableSet Name="K2Node_VariableSet_0"
+   VariableReference=(MemberName="MyBannerView",MemberGuid=92CD70DD46F33AD3CE1A99AAA5A2C44A,bSelfContext=True)
+   NodePosX=-320
+   NodePosY=-1648
+   NodeGuid=3D5663EE41D7DFB24B6B998F0947BA85
+   CustomProperties Pin (PinId=168494BB43CB42FB39BED98CA1A9A853,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_AsyncAction_8 9B693FA54A713249472CE8B30A4BAC18,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E185F6A545AD52CEA8C71B8D63ECA843,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=063961514829D5E2972FE69D6E17AE14,PinName="MyBannerView",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 87B107BB4EADB1C49B31608E6C80FE17,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=3086E40C4B32498AD6BCD39EF9ED51E8,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AC24D00A4F7AB2B42E6914A1E4155FC3,PinName="Output_Get",PinToolTip="Retrieves the value of the variable, can use instead of a separate Get node",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/CreateBannerView.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p class="tip">It's important to store the Banner View in a variable to prevent it from being garbage collected.</p><p class="tip">Make sure you connect the <code>Created</code> pin and not the default execution pin.</p><h2 id="loading-an-ad"><a href="blueprintbannerview.html#loading-an-ad" data-id="loading-an-ad" class="anchor"><span>Loading an Ad</span></a></h2><p>Now that the Banner is initialized, it's time to load an ad that will be then shown to the user.<br>To load an ad, call the <code>Load Ad for Banner View</code> node.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_8"
+   ProxyFactoryFunctionName="CreateAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobCreateAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobCreateAdView"'
+   NodePosX=-656
+   NodePosY=-1856
+   NodeGuid=4C882A284910DD3DD4822180C55B589B
+   CustomProperties Pin (PinId=994C9DE7400D947B5E20938D001B400F,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_Event_0 118586BB4EA9470F8087FD820D560415,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F43FAE064C5915566DEDBDAD578E0494,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9B693FA54A713249472CE8B30A4BAC18,PinName="Created",PinFriendlyName=NSLOCTEXT("", "92A589234990348384776BBB816B6004", "Created"),PinToolTip="The AdView has been created.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_VariableSet_0 168494BB43CB42FB39BED98CA1A9A853,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9BAFEE9A465E22ED508B42B36C626933,PinName="Error",PinFriendlyName=NSLOCTEXT("", "70F277BD4D04F701F745E08F5AF27D62", "Error"),PinToolTip="An error occured while creating the AdView.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8D11D03E471CA35543C7A28DF24C28F5,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=87B107BB4EADB1C49B31608E6C80FE17,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 063961514829D5E2972FE69D6E17AE14,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C76722AB4806AFBB835B679983DFBBA6,PinName="AdUnit",PinToolTip="Ad Unit\nString\n\nThe ad unit used for the AdView.",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="ca-app-pub-3940256099942544/6300978111",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6FC75BAA446D72F43EDC29B1456B7869,PinName="Width",PinToolTip="Width\nInteger\n\nThe width of the AdView.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="250",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=16C611A7472FAE4300BB229B63185514,PinName="Height",PinToolTip="Height\nInteger\n\nThe height of the AdView.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="350",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_Event Name="K2Node_Event_0"
+   EventReference=(MemberParent=Class'"/Script/Engine.Actor"',MemberName="ReceiveBeginPlay")
+   bOverrideFunction=True
+   NodePosX=-848
+   NodePosY=-1856
+   NodeGuid=3726E360434EF53042718A85DD232D24
+   CustomProperties Pin (PinId=6148E00247D433F976646085B91B91C2,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=Class'"/Script/Engine.Actor"',MemberName="ReceiveBeginPlay"),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=118586BB4EA9470F8087FD820D560415,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 994C9DE7400D947B5E20938D001B400F,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableSet Name="K2Node_VariableSet_0"
+   VariableReference=(MemberName="MyBannerView",MemberGuid=2C2925EE473C6BAD14002E92BA2B5360,bSelfContext=True)
+   NodePosX=-176
+   NodePosY=-1808
+   NodeGuid=08280E03454240DB1C741783CB016C56
+   CustomProperties Pin (PinId=168494BB43CB42FB39BED98CA1A9A853,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 9B693FA54A713249472CE8B30A4BAC18,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E185F6A545AD52CEA8C71B8D63ECA843,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 F9BEC58B49B8A67EF8F4DE8C32D348CC,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=063961514829D5E2972FE69D6E17AE14,PinName="MyBannerView",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 87B107BB4EADB1C49B31608E6C80FE17,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AC24D00A4F7AB2B42E6914A1E4155FC3,PinName="Output_Get",PinToolTip="Retrieves the value of the variable, can use instead of a separate Get node",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 952CED6F472430F5C9E85F93135E25F2,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=3086E40C4B32498AD6BCD39EF9ED51E8,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_14"
+   ProxyFactoryFunctionName="LoadAdAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobLoadAdAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobLoadAdAdView"'
+   NodePosX=48
+   NodePosY=-1824
+   NodeGuid=485D517244FFC81057E30B9DE901F965
+   CustomProperties Pin (PinId=F9BEC58B49B8A67EF8F4DE8C32D348CC,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_VariableSet_0 E185F6A545AD52CEA8C71B8D63ECA843,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=40EDD3F24D8440C7E3E52D813929B913,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A2EBAAE54223BA5850179792682AA7E7,PinName="AdLoaded",PinFriendlyName=NSLOCTEXT("", "7DFCBBE244DC595ACE44519321AFA7D6", "Ad Loaded"),PinToolTip="The ad is now loaded.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7C1291264688F0F0B847779EA9389D27,PinName="Error",PinFriendlyName=NSLOCTEXT("", "A2CFC9C34497DFB2F6066EAA50ED7C6B", "Error"),PinToolTip="An error occured while loading the ad.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B52D9DA640998870C42832A14D518F9D,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=12AA73144BCC5314FE3E118D80B52604,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=952CED6F472430F5C9E85F93135E25F2,PinName="AdView",PinToolTip="Ad View\nAd Mob Banner View Object Reference\n\nThe AdView to LoadAd.",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 AC24D00A4F7AB2B42E6914A1E4155FC3,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=80ABCA5845D121D57DAB058DA788263A,PinName="Keywords",PinToolTip="Keywords\nArray of Strings",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_MakeArray_1 FD2EC71C4897AF42EEC5EEBC1E966975,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_MakeArray Name="K2Node_MakeArray_1"
+   NumInputs=2
+   NodePosX=-192
+   NodePosY=-1712
+   NodeGuid=FFFC471B46D07043DF1F5585F4AC80CB
+   CustomProperties Pin (PinId=FD2EC71C4897AF42EEC5EEBC1E966975,PinName="Array",Direction="EGPD_Output",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 80ABCA5845D121D57DAB058DA788263A,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4853D1DC4DA69297AA8723A704406A61,PinName="[0]",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,DefaultValue="Some",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=23E7370A40B0539E4FED1AA189C4547C,PinName="[1]",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Keywords",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/LoadAdBannerView.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p class="tip">If you plan to show a Banner View during a precise time as for level transition, you should load the ad <em>before</em> so the ad
+is ready when you want to show it.</p><h2 id="showing-the-banner"><a href="blueprintbannerview.html#showing-the-banner" data-id="showing-the-banner" class="anchor"><span>Showing the Banner</span></a></h2><p>To show the Banner View, simply use the <code>Show Banner View</code> node.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_8"
+   ProxyFactoryFunctionName="CreateAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobCreateAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobCreateAdView"'
+   NodePosX=-1152
+   NodePosY=-2224
+   NodeGuid=8CF2C2B6481BDCC7A49187842BC7A895
+   CustomProperties Pin (PinId=994C9DE7400D947B5E20938D001B400F,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_Event_0 118586BB4EA9470F8087FD820D560415,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F43FAE064C5915566DEDBDAD578E0494,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9B693FA54A713249472CE8B30A4BAC18,PinName="Created",PinFriendlyName="Created",PinToolTip="The AdView has been created.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_VariableSet_0 168494BB43CB42FB39BED98CA1A9A853,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9BAFEE9A465E22ED508B42B36C626933,PinName="Error",PinFriendlyName="Error",PinToolTip="An error occured while creating the AdView.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8D11D03E471CA35543C7A28DF24C28F5,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=87B107BB4EADB1C49B31608E6C80FE17,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 063961514829D5E2972FE69D6E17AE14,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C76722AB4806AFBB835B679983DFBBA6,PinName="AdUnit",PinToolTip="Ad Unit\nString\n\nThe ad unit used for the AdView.",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="ca-app-pub-3940256099942544/6300978111",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6FC75BAA446D72F43EDC29B1456B7869,PinName="Width",PinToolTip="Width\nInteger\n\nThe width of the AdView.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="250",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=16C611A7472FAE4300BB229B63185514,PinName="Height",PinToolTip="Height\nInteger\n\nThe height of the AdView.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="350",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_Event Name="K2Node_Event_0"
+   EventReference=(MemberParent=Class'"/Script/Engine.Actor"',MemberName="ReceiveBeginPlay")
+   bOverrideFunction=True
+   NodePosX=-1344
+   NodePosY=-2224
+   NodeGuid=4336E62D46842FF707D1668EB5D985AE
+   CustomProperties Pin (PinId=6148E00247D433F976646085B91B91C2,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=Class'"/Script/Engine.Actor"',MemberName="ReceiveBeginPlay"),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=118586BB4EA9470F8087FD820D560415,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 994C9DE7400D947B5E20938D001B400F,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableSet Name="K2Node_VariableSet_0"
+   VariableReference=(MemberName="MyBannerView",MemberGuid=2C2925EE473C6BAD14002E92BA2B5360,bSelfContext=True)
+   NodePosX=-672
+   NodePosY=-2176
+   NodeGuid=5505BACA4A99F252D12EC1A0E7697DB8
+   CustomProperties Pin (PinId=168494BB43CB42FB39BED98CA1A9A853,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 9B693FA54A713249472CE8B30A4BAC18,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E185F6A545AD52CEA8C71B8D63ECA843,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 F9BEC58B49B8A67EF8F4DE8C32D348CC,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=063961514829D5E2972FE69D6E17AE14,PinName="MyBannerView",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 87B107BB4EADB1C49B31608E6C80FE17,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AC24D00A4F7AB2B42E6914A1E4155FC3,PinName="Output_Get",PinToolTip="Retrieves the value of the variable, can use instead of a separate Get node",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 952CED6F472430F5C9E85F93135E25F2,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=3086E40C4B32498AD6BCD39EF9ED51E8,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_14"
+   ProxyFactoryFunctionName="LoadAdAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobLoadAdAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobLoadAdAdView"'
+   NodePosX=-448
+   NodePosY=-2192
+   NodeGuid=63BF0ADD41DE17529F957EA2BF25F6EC
+   CustomProperties Pin (PinId=F9BEC58B49B8A67EF8F4DE8C32D348CC,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_VariableSet_0 E185F6A545AD52CEA8C71B8D63ECA843,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=40EDD3F24D8440C7E3E52D813929B913,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A2EBAAE54223BA5850179792682AA7E7,PinName="AdLoaded",PinFriendlyName="Ad Loaded",PinToolTip="The ad is now loaded.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_AsyncAction_17 CD8C8303458FDBB5F7E4829930178350,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7C1291264688F0F0B847779EA9389D27,PinName="Error",PinFriendlyName="Error",PinToolTip="An error occured while loading the ad.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B52D9DA640998870C42832A14D518F9D,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=12AA73144BCC5314FE3E118D80B52604,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_17 AEE7213946EC6D5E77131A971C7AFB1F,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=952CED6F472430F5C9E85F93135E25F2,PinName="AdView",PinToolTip="Ad View\nAd Mob Banner View Object Reference\n\nThe AdView to LoadAd.",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 AC24D00A4F7AB2B42E6914A1E4155FC3,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=80ABCA5845D121D57DAB058DA788263A,PinName="Keywords",PinToolTip="Keywords\nArray of Strings",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_MakeArray_1 FD2EC71C4897AF42EEC5EEBC1E966975,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_MakeArray Name="K2Node_MakeArray_1"
+   NumInputs=2
+   NodePosX=-688
+   NodePosY=-2080
+   NodeGuid=85AB44834AFD3EBB9F1C0D89FEEA3F11
+   CustomProperties Pin (PinId=FD2EC71C4897AF42EEC5EEBC1E966975,PinName="Array",Direction="EGPD_Output",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 80ABCA5845D121D57DAB058DA788263A,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4853D1DC4DA69297AA8723A704406A61,PinName="[0]",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Some",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=23E7370A40B0539E4FED1AA189C4547C,PinName="[1]",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Keywords",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_17"
+   ProxyFactoryFunctionName="ShowAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobShowAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobShowAdView"'
+   NodePosX=-176
+   NodePosY=-2160
+   NodeGuid=8C4AF14347F14BBD3E80C0A33FD54FF9
+   CustomProperties Pin (PinId=CD8C8303458FDBB5F7E4829930178350,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,LinkedTo=(K2Node_AsyncAction_14 A2EBAAE54223BA5850179792682AA7E7,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FECF0AF24E55A7F206A7159E07644FBA,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=306B3DBF41E456F581EBDAB161F9294F,PinName="Shown",PinFriendlyName="Shown",PinToolTip="The AdView is now shown.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=74E13FAC41D07CBEC6CF8F9B3831D7BE,PinName="Error",PinFriendlyName="Error",PinToolTip="An error occured while showing the AdView.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=True,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B3CF41654A9FFCCEEAD65090C78FEFAF,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FE577AC546DCF29CB032EC918D1A6135,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AEE7213946EC6D5E77131A971C7AFB1F,PinName="AdView",PinToolTip="Ad View\nAd Mob Banner View Object Reference\n\nThe AdView to show to the user.",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 12AA73144BCC5314FE3E118D80B52604,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/ShowBannerView.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<h2 id="moving-the-banner"><a href="blueprintbannerview.html#moving-the-banner" data-id="moving-the-banner" class="anchor"><span>Moving the Banner</span></a></h2><p>There are two ways to move the banner.</p><p>To move the banner to a predefined position, you can use the following code:</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_0"
+   VariableReference=(MemberName="MyBannerView",MemberGuid=2C2925EE473C6BAD14002E92BA2B5360,bSelfContext=True)
+   NodePosX=3408
+   NodePosY=-368
+   NodeGuid=8B4C15874A42ED003D368AA3FA24435D
+   CustomProperties Pin (PinId=27EF04784F6997A59730E29247B6CFFC,PinName="MyBannerView",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_23 C6088E43471552465D1A44AEC24D0A66,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=37E538684175B642BE1923920420126D,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_23"
+   ProxyFactoryFunctionName="MoveAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobMoveToAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobMoveToAdView"'
+   NodePosX=3632
+   NodePosY=-480
+   NodeGuid=631299DA40CC84878312C4A5FA9A7365
+   CustomProperties Pin (PinId=8460D15241AF2605DFE287A559D6B3B6,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CustomEvent_8 6B4660834738D812D62C7596C8959212,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=60CDBD6745BE230EA9DA4B8691BF5FBC,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F74FEB6C4C5F7C22E2E811877B8FBFF6,PinName="Moved",PinFriendlyName="Moved",PinToolTip="The AdView is now at the desired location.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=24B75FE9498831220093F2AE7CBA9EB4,PinName="Error",PinFriendlyName="Error",PinToolTip="An error occured while moving the AdView.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4B2A7D5D453BF7CB81D4A3BE025743C3,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=94FECBE64FB3415BF0D830AB35E9A392,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C6088E43471552465D1A44AEC24D0A66,PinName="AdView",PinToolTip="Ad View\nAd Mob Banner View Object Reference\n\nThe AdView to move.",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableGet_0 27EF04784F6997A59730E29247B6CFFC,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=813B7CDF4ABD8EF2246A64A3387B7710,PinName="Position",PinToolTip="Position\nEAdMobAdPosition Enum",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobAdPosition"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Bottom",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CustomEvent Name="K2Node_CustomEvent_8"
+   CustomFunctionName="Move To Position"
+   NodePosX=3376
+   NodePosY=-496
+   NodeGuid=C9FCB1DE44EAE41F5077C1BB616AACB2
+   CustomProperties Pin (PinId=FF769C9945B3B1ED8066D59A1DCF5B7F,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6B4660834738D812D62C7596C8959212,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_23 8460D15241AF2605DFE287A559D6B3B6,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/MoveBanner.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p>Or to move to a custom X/Y position, we can pass directly the X and Y coordinates:</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_1"
+   VariableReference=(MemberName="MyBannerView",MemberGuid=2C2925EE473C6BAD14002E92BA2B5360,bSelfContext=True)
+   NodePosX=3440
+   NodePosY=-32
+   NodeGuid=5DBBBC7E43B8A04141C2F392AC4757DF
+   CustomProperties Pin (PinId=27EF04784F6997A59730E29247B6CFFC,PinName="MyBannerView",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_22 996A8B4A4B80A83BB8514A80BEE70877,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=37E538684175B642BE1923920420126D,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_22"
+   ProxyFactoryFunctionName="MoveAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobMoveAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobMoveAdView"'
+   NodePosX=3648
+   NodePosY=-144
+   NodeGuid=3240DF384943C605395F659F53F1F14B
+   CustomProperties Pin (PinId=F7E6B347492BB3C1253038B7538BE31D,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CustomEvent_9 63CC744D4B4E61644CEAB9922DF758BA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BC637FC14D61322094E94FBE9AF08C7A,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=513FEE3742FE2B91DD99209B018E0AF9,PinName="Moved",PinFriendlyName="Moved",PinToolTip="The AdView is now at the desired location.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9FB2842D4B8F9D1EEB1A2AA0D063647A,PinName="Error",PinFriendlyName="Error",PinToolTip="An error occured while moving the AdView.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F83839F84FD72024A055E9B298123E45,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B1A981BE4785E7CFECA893A4CC198F63,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=996A8B4A4B80A83BB8514A80BEE70877,PinName="AdView",PinToolTip="Ad View\nAd Mob Banner View Object Reference\n\nThe AdView to move.",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableGet_1 27EF04784F6997A59730E29247B6CFFC,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BDCF7F744881C93847BE99BF59B67164,PinName="X",PinToolTip="X\nInteger\n\nThe X location we want the AdView to move to.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="0",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=640B37444FD21F88D012D388199075DA,PinName="Y",PinToolTip="Y\nInteger\n\nThe Y location we want the AdView to move to.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="0",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CustomEvent Name="K2Node_CustomEvent_9"
+   CustomFunctionName="Move To Custom Position"
+   NodePosX=3360
+   NodePosY=-160
+   NodeGuid=E729E2684BC0DAAC2DC51F8C874C8FFB
+   CustomProperties Pin (PinId=59E9582E444E8D7457937F9BAF02EDFC,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=63CC744D4B4E61644CEAB9922DF758BA,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_22 F7E6B347492BB3C1253038B7538BE31D,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/MoveBannerXY.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<h2 id="error-handling"><a href="blueprintbannerview.html#error-handling" data-id="error-handling" class="anchor"><span>Error Handling</span></a></h2><p>Creating, loading and displaying a banner view might fail with different reasons as network error, fill error, configuration error, and other less common errors.
+For this reason, it is good practice to cleanly handle these possible errors.</p><p>First, let's create a simple error handler. It prints the error and tries to show the banner view again after a fixed delay.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_GetEnumeratorNameAsString Name="K2Node_GetEnumeratorNameAsString_1"
+   NodePosX=4992
+   NodePosY=-528
+   NodeGuid=0D1BF995477F91091A332D85E46AF9AD
+   CustomProperties Pin (PinId=1095238945C796D07B15009F876EAC7D,PinName="Enumerator",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="InternalError",LinkedTo=(K2Node_CustomEvent_11 05230A7D4811A475E29D1DB080B66570,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BF4E28E24CEB33B54AFA68AD4F6C1908,PinName="ReturnValue",Direction="EGPD_Output",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CommutativeAssociativeBinaryOperator_1 C6021ABF4C7E3D796E00F08AF68EF895,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CustomEvent Name="K2Node_CustomEvent_11"
+   CustomFunctionName="PrintErrorAndRetry"
+   NodePosX=4800
+   NodePosY=-688
+   NodeGuid=856959EF4A17888AF9D2A2AD4D6B5156
+   CustomProperties Pin (PinId=27E1203D4C889D869DCD41BB488D5EFE,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',MemberName="PrintErrorAndRetry",MemberGuid=856959EF4A17888AF9D2A2AD4D6B5156),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=3637729E440AE389B60263B6BD83291E,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_21 27C1434E4DCFA387623515B641E90654,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C6F482CD4BFCC957D821ABB836D32C94,PinName="Message",Direction="EGPD_Output",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CommutativeAssociativeBinaryOperator_1 F41CA4DF43C2B39077D0458EEC638585,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=05230A7D4811A475E29D1DB080B66570,PinName="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="InternalError",AutogeneratedDefaultValue="InternalError",LinkedTo=(K2Node_GetEnumeratorNameAsString_1 1095238945C796D07B15009F876EAC7D,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties UserDefinedPin (PinName="Message",PinType=(PinCategory="string"),DesiredPinDirection=EGPD_Output)
+   CustomProperties UserDefinedPin (PinName="Error",PinType=(PinCategory="byte",PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"'),DesiredPinDirection=EGPD_Output,PinDefaultValue="InternalError")
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_21"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetSystemLibrary"',MemberName="PrintString")
+   NodePosX=5392
+   NodePosY=-672
+   AdvancedPinDisplay=Hidden
+   EnabledState=DevelopmentOnly
+   NodeGuid=8346E24F45EFA877EA0D5FBCF44234DF
+   CustomProperties Pin (PinId=27C1434E4DCFA387623515B641E90654,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CustomEvent_11 3637729E440AE389B60263B6BD83291E,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=5FFDB28B4F9519E2324A67BFA91EFB1C,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_23 6BBE3B2A47FA21A6E5EBD59174DC921B,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F8CE1C7E4203DE5428A3CB86FB7B9FF6,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nKismet System Library Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/Engine.KismetSystemLibrary"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultObject="/Script/Engine.Default__KismetSystemLibrary",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2FB1E4714797901CA24D66B88E4B4407,PinName="WorldContextObject",PinToolTip="World Context Object\nObject Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/CoreUObject.Object"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7E88093B4E27ABC4E269F2AC77157687,PinName="InString",PinToolTip="In String\nString\n\nThe string to log out",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Hello",AutogeneratedDefaultValue="Hello",LinkedTo=(K2Node_CommutativeAssociativeBinaryOperator_1 EECEFA7341E4E47494AA649FAE93DB53,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=36200B464B4AC15600A277A5634B0BFF,PinName="bPrintToScreen",PinToolTip="Print to Screen\nBoolean\n\nWhether or not to print the output to the screen",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="true",AutogeneratedDefaultValue="true",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=5A6068E84DC9246EC5FDB5B66EB1BDC1,PinName="bPrintToLog",PinToolTip="Print to Log\nBoolean\n\nWhether or not to print the output to the log",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="true",AutogeneratedDefaultValue="true",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=844AF1254F1EFD39E453ED8AF5C8963C,PinName="TextColor",PinToolTip="Text Color\nLinear Color Structure\n\nWhether or not to print the output to the console",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="(R=1.000000,G=0.000000,B=0.076054,A=1.000000)",AutogeneratedDefaultValue="(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9F6904364143B0F6F94480B5F7E3C476,PinName="Duration",PinToolTip="Duration\nFloat\n\nThe display duration (if Print to Screen is True). Using negative number will result in loading the duration time from the config.",PinType.PinCategory="float",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="60.000000",AutogeneratedDefaultValue="2.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CommutativeAssociativeBinaryOperator Name="K2Node_CommutativeAssociativeBinaryOperator_1"
+   NumAdditionalInputs=1
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetStringLibrary"',MemberName="Concat_StrStr")
+   NodePosX=5136
+   NodePosY=-592
+   NodeGuid=F396A2B848C4D6761EF69CB04D4D610B
+   CustomProperties Pin (PinId=0D70BB104D9A22A87C737691111CF4D1,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nKismet String Library Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/Engine.KismetStringLibrary"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultObject="/Script/Engine.Default__KismetStringLibrary",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F41CA4DF43C2B39077D0458EEC638585,PinName="A",PinToolTip="A\nString\n\nThe original string",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CustomEvent_11 C6F482CD4BFCC957D821ABB836D32C94,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7F3FF0D346ED66FAAF33C5B1A637E35E,PinName="B",PinToolTip="B\nString\n\nThe string to append to A",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue=": ",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=EECEFA7341E4E47494AA649FAE93DB53,PinName="ReturnValue",PinToolTip="Return Value\nString\n\nA new string which is the concatenation of A+B",Direction="EGPD_Output",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_21 7E88093B4E27ABC4E269F2AC77157687,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C6021ABF4C7E3D796E00F08AF68EF895,PinName="C",PinToolTip="C\nString",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_GetEnumeratorNameAsString_1 BF4E28E24CEB33B54AFA68AD4F6C1908,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_23"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetSystemLibrary"',MemberName="Delay")
+   NodePosX=5584
+   NodePosY=-672
+   NodeGuid=1596C46B429223CDDC04AABCEE26A195
+   CustomProperties Pin (PinId=6BBE3B2A47FA21A6E5EBD59174DC921B,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_21 5FFDB28B4F9519E2324A67BFA91EFB1C,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1D14B7674C73B4A70830D29DB3742503,PinName="then",PinFriendlyName=NSLOCTEXT("", "12EADC114E7278D14FE72FA6942AABAA", "Completed"),PinToolTip="Completed\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_24 24BD864D4911408B543442A271E7B0BE,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B688ED5842CFB748D66333A5901C9C5C,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nKismet System Library Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/Engine.KismetSystemLibrary"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultObject="/Script/Engine.Default__KismetSystemLibrary",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=470FF4364BE30BE3CADE1F9788E85BE8,PinName="WorldContextObject",PinToolTip="World Context Object\nObject Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/CoreUObject.Object"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6739AFE5407D0998CFC85AB95288EFBE,PinName="Duration",PinToolTip="Duration\nFloat\n\nlength of delay (in seconds).",PinType.PinCategory="float",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="2.000000",AutogeneratedDefaultValue="0.2",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=44875D1243156A5C9C95068C6BDDDE3A,PinName="LatentInfo",PinToolTip="Latent Info\nLatent Action Info Structure\n\nThe latent action.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=ScriptStruct'"/Script/Engine.LatentActionInfo"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="(Linkage=-1,UUID=-1,ExecutionFunction=\"\",CallbackTarget=None)",AutogeneratedDefaultValue="LatentInfo",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_24"
+   FunctionReference=(MemberName="Show Banner View",MemberGuid=83F0E4654BE3B4D1C45143B9479ECD5F,bSelfContext=True)
+   NodePosX=5872
+   NodePosY=-688
+   NodeGuid=4F42E68F41D091589FF3B7AE6071EE85
+   CustomProperties Pin (PinId=24BD864D4911408B543442A271E7B0BE,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_23 1D14B7674C73B4A70830D29DB3742503,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F25C27CE4C2BCC6EF9FF0FB268A5EFD4,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=80700D9A4F70DAF36014B1A746EC9BDC,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nSelf Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="self",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/UnrealEd.EdGraphNode_Comment Name="EdGraphNode_Comment_0"
+   bCommentBubbleVisible_InDetailsPanel=False
+   NodePosX=4752
+   NodePosY=-752
+   NodeWidth=1359
+   NodeHeight=310
+   bCommentBubblePinned=False
+   bCommentBubbleVisible=False
+   NodeComment="Prints the error, waits a moment and retries to show the banner"
+   NodeGuid=9DBF3BB440BEBCEFA4EA099A132D2E45
+End Object
+</textarea>
+<img src="_images/HandleBannerViewError.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p class="tip">This is a very simple error handler. In your application, you might want to modify it to typically have an incremental delay before retrying in case of a network error,
+stop asking for ads for a longer moment if the server does not have any ads for you, etc.</p><p>We can now modify the code used to create and show the banner view to use our handler in case of error:</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_8"
+   ProxyFactoryFunctionName="CreateAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobCreateAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobCreateAdView"'
+   NodePosX=5104
+   NodePosY=-1420
+   NodeGuid=ED86CC9545F27D4198C96783D318D2B5
+   CustomProperties Pin (PinId=994C9DE7400D947B5E20938D001B400F,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_Event_0 118586BB4EA9470F8087FD820D560415,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F43FAE064C5915566DEDBDAD578E0494,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9B693FA54A713249472CE8B30A4BAC18,PinName="Created",PinFriendlyName=NSLOCTEXT("", "DBC45F324551A79F0757F68B899062E3", "Created"),PinToolTip="The AdView has been created.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 168494BB43CB42FB39BED98CA1A9A853,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9BAFEE9A465E22ED508B42B36C626933,PinName="Error",PinFriendlyName=NSLOCTEXT("", "CCB0FFA24DB23660B6C10788511D19E2", "Error"),PinToolTip="An error occured while creating the AdView.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_26 93ABEA0B4B84677F089B348323072AB2,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8D11D03E471CA35543C7A28DF24C28F5,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=87B107BB4EADB1C49B31608E6C80FE17,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 063961514829D5E2972FE69D6E17AE14,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C76722AB4806AFBB835B679983DFBBA6,PinName="AdUnit",PinToolTip="Ad Unit\nString\n\nThe ad unit used for the AdView.",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="ca-app-pub-3940256099942544/6300978111",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6FC75BAA446D72F43EDC29B1456B7869,PinName="Width",PinToolTip="Width\nInteger\n\nThe width of the AdView.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="250",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=16C611A7472FAE4300BB229B63185514,PinName="Height",PinToolTip="Height\nInteger\n\nThe height of the AdView.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="350",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CustomEvent Name="K2Node_Event_0"
+   CustomFunctionName="Show Banner View"
+   NodePosX=4864
+   NodePosY=-1436
+   ErrorType=3
+   NodeGuid=83F0E4654BE3B4D1C45143B9479ECD5F
+   CustomProperties Pin (PinId=6148E00247D433F976646085B91B91C2,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',MemberName="Show Banner View",MemberGuid=83F0E4654BE3B4D1C45143B9479ECD5F),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=118586BB4EA9470F8087FD820D560415,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 994C9DE7400D947B5E20938D001B400F,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableSet Name="K2Node_VariableSet_0"
+   VariableReference=(MemberName="MyBannerView",MemberGuid=2C2925EE473C6BAD14002E92BA2B5360,bSelfContext=True)
+   NodePosX=5616
+   NodePosY=-1376
+   NodeGuid=B00D245F443E72AA82B1A48C3F4D7B1F
+   CustomProperties Pin (PinId=168494BB43CB42FB39BED98CA1A9A853,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 9B693FA54A713249472CE8B30A4BAC18,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E185F6A545AD52CEA8C71B8D63ECA843,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 F9BEC58B49B8A67EF8F4DE8C32D348CC,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=063961514829D5E2972FE69D6E17AE14,PinName="MyBannerView",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 87B107BB4EADB1C49B31608E6C80FE17,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AC24D00A4F7AB2B42E6914A1E4155FC3,PinName="Output_Get",PinToolTip="Retrieves the value of the variable, can use instead of a separate Get node",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 952CED6F472430F5C9E85F93135E25F2,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=3086E40C4B32498AD6BCD39EF9ED51E8,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_14"
+   ProxyFactoryFunctionName="LoadAdAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobLoadAdAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobLoadAdAdView"'
+   NodePosX=5856
+   NodePosY=-1392
+   NodeGuid=FAEC464440613B0458E15593B19365AD
+   CustomProperties Pin (PinId=F9BEC58B49B8A67EF8F4DE8C32D348CC,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 E185F6A545AD52CEA8C71B8D63ECA843,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=40EDD3F24D8440C7E3E52D813929B913,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A2EBAAE54223BA5850179792682AA7E7,PinName="AdLoaded",PinFriendlyName=NSLOCTEXT("", "ADBA4C734C80B8F19A4D6DA596345986", "Ad Loaded"),PinToolTip="The ad is now loaded.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_17 CD8C8303458FDBB5F7E4829930178350,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7C1291264688F0F0B847779EA9389D27,PinName="Error",PinFriendlyName=NSLOCTEXT("", "4270DB6548161ACA11AA7AB074DDD69F", "Error"),PinToolTip="An error occured while loading the ad.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_27 93ABEA0B4B84677F089B348323072AB2,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B52D9DA640998870C42832A14D518F9D,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_27 6C949BE04E8C54185D7817853499A4E8,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=12AA73144BCC5314FE3E118D80B52604,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_17 AEE7213946EC6D5E77131A971C7AFB1F,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=952CED6F472430F5C9E85F93135E25F2,PinName="AdView",PinToolTip="Ad View\nAd Mob Banner View Object Reference\n\nThe AdView to LoadAd.",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_VariableSet_0 AC24D00A4F7AB2B42E6914A1E4155FC3,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=80ABCA5845D121D57DAB058DA788263A,PinName="Keywords",PinToolTip="Keywords\nArray of Strings",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_17"
+   ProxyFactoryFunctionName="ShowAdView"
+   ProxyFactoryClass=Class'"/Script/AdsPro.AdMobShowAdView"'
+   ProxyClass=Class'"/Script/AdsPro.AdMobShowAdView"'
+   NodePosX=6192
+   NodePosY=-1364
+   NodeGuid=076458F74B07E06FF2AADE9AAD73C296
+   CustomProperties Pin (PinId=CD8C8303458FDBB5F7E4829930178350,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 A2EBAAE54223BA5850179792682AA7E7,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FECF0AF24E55A7F206A7159E07644FBA,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=306B3DBF41E456F581EBDAB161F9294F,PinName="Shown",PinFriendlyName=NSLOCTEXT("", "3A255A1548A1089F715A7FAC260AD6E7", "Shown"),PinToolTip="The AdView is now shown.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_28 088695E5401FE5F741CC7CBBEC3FCE82,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=74E13FAC41D07CBEC6CF8F9B3831D7BE,PinName="Error",PinFriendlyName=NSLOCTEXT("", "762419874C62B7B2152A89920783BDC7", "Error"),PinToolTip="An error occured while showing the AdView.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_25 93ABEA0B4B84677F089B348323072AB2,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B3CF41654A9FFCCEEAD65090C78FEFAF,PinName="Error",PinToolTip="Error",Direction="EGPD_Output",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_CallFunction_25 6C949BE04E8C54185D7817853499A4E8,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FE577AC546DCF29CB032EC918D1A6135,PinName="BannerView",PinToolTip="Banner View",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AEE7213946EC6D5E77131A971C7AFB1F,PinName="AdView",PinToolTip="Ad View\nAd Mob Banner View Object Reference\n\nThe AdView to show to the user.",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/AdsPro.AdMobBannerView"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 12AA73144BCC5314FE3E118D80B52604,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_26"
+   FunctionReference=(MemberName="PrintErrorAndRetry",MemberGuid=856959EF4A17888AF9D2A2AD4D6B5156,bSelfContext=True)
+   NodePosX=5568
+   NodePosY=-1264
+   NodeGuid=FE2219D948BAF4890BC05B9317550C9A
+   CustomProperties Pin (PinId=93ABEA0B4B84677F089B348323072AB2,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_8 9BAFEE9A465E22ED508B42B36C626933,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=810EE5CF4663B3A0D9B5EBAF3979F29D,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FFDA793B4C6D8B8D30E517A2377E2A45,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="self",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=ED7F9B48459A3D890D8B8B85F9A2F6F6,PinName="Message",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Failed to create banner view",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6C949BE04E8C54185D7817853499A4E8,PinName="Error",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="InternalError",AutogeneratedDefaultValue="InternalError",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_27"
+   FunctionReference=(MemberName="PrintErrorAndRetry",MemberGuid=856959EF4A17888AF9D2A2AD4D6B5156,bSelfContext=True)
+   NodePosX=6160
+   NodePosY=-1168
+   NodeGuid=EE8E02604B910A0A387A1381E755A89A
+   CustomProperties Pin (PinId=93ABEA0B4B84677F089B348323072AB2,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_14 7C1291264688F0F0B847779EA9389D27,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=810EE5CF4663B3A0D9B5EBAF3979F29D,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FFDA793B4C6D8B8D30E517A2377E2A45,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="self",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=ED7F9B48459A3D890D8B8B85F9A2F6F6,PinName="Message",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Failed to load ad for banner view",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6C949BE04E8C54185D7817853499A4E8,PinName="Error",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="InternalError",AutogeneratedDefaultValue="InternalError",LinkedTo=(K2Node_AsyncAction_14 B52D9DA640998870C42832A14D518F9D,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_25"
+   FunctionReference=(MemberName="PrintErrorAndRetry",MemberGuid=856959EF4A17888AF9D2A2AD4D6B5156,bSelfContext=True)
+   NodePosX=6512
+   NodePosY=-1248
+   NodeGuid=3D3AAB2F4950E81650B16689D82B0E07
+   CustomProperties Pin (PinId=93ABEA0B4B84677F089B348323072AB2,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_17 74E13FAC41D07CBEC6CF8F9B3831D7BE,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=810EE5CF4663B3A0D9B5EBAF3979F29D,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FFDA793B4C6D8B8D30E517A2377E2A45,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="self",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=ED7F9B48459A3D890D8B8B85F9A2F6F6,PinName="Message",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Failed to show banner view",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6C949BE04E8C54185D7817853499A4E8,PinName="Error",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Enum'"/Script/AdsPro.EAdMobError"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="InternalError",AutogeneratedDefaultValue="InternalError",LinkedTo=(K2Node_AsyncAction_17 B3CF41654A9FFCCEEAD65090C78FEFAF,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_28"
+   FunctionReference=(MemberParent=Class'"/Script/Engine.KismetSystemLibrary"',MemberName="PrintString")
+   NodePosX=6512
+   NodePosY=-1408
+   AdvancedPinDisplay=Hidden
+   EnabledState=DevelopmentOnly
+   NodeGuid=686310F240F5137320CCA7AFD525EB87
+   CustomProperties Pin (PinId=088695E5401FE5F741CC7CBBEC3FCE82,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,LinkedTo=(K2Node_AsyncAction_17 306B3DBF41E456F581EBDAB161F9294F,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6EA858B94540A906243034A8E5D5907E,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C30A305D4197CFD6B5DA05B17164F98B,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nKismet System Library Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/Engine.KismetSystemLibrary"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultObject="/Script/Engine.Default__KismetSystemLibrary",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A9670F1942CD97EFB9703EB788644DB8,PinName="WorldContextObject",PinToolTip="World Context Object\nObject Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=Class'"/Script/CoreUObject.Object"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=DEF5360E4F61F588A503049C956E971B,PinName="InString",PinToolTip="In String\nString\n\nThe string to log out",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="Banner view shown.",AutogeneratedDefaultValue="Hello",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D694A0F64470212EF44840981F09EC52,PinName="bPrintToScreen",PinToolTip="Print to Screen\nBoolean\n\nWhether or not to print the output to the screen",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="true",AutogeneratedDefaultValue="true",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=49E339474741BC7ADEB0A2BD41D97B83,PinName="bPrintToLog",PinToolTip="Print to Log\nBoolean\n\nWhether or not to print the output to the log",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="true",AutogeneratedDefaultValue="true",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A2BEE5DE420C468C8BD69180D7C41CC6,PinName="TextColor",PinToolTip="Text Color\nLinear Color Structure\n\nWhether or not to print the output to the console",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="(R=0.000000,G=1.000000,B=0.250000,A=1.000000)",AutogeneratedDefaultValue="(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6DE0442C4716BE607903578A44F56A03,PinName="Duration",PinToolTip="Duration\nFloat\n\nThe display duration (if Print to Screen is True). Using negative number will result in loading the duration time from the config.",PinType.PinCategory="float",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,DefaultValue="60.000000",AutogeneratedDefaultValue="2.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/UnrealEd.EdGraphNode_Comment Name="EdGraphNode_Comment_2"
+   bCommentBubbleVisible_InDetailsPanel=False
+   NodePosX=4816
+   NodePosY=-1488
+   NodeWidth=2000
+   NodeHeight=544
+   bCommentBubblePinned=False
+   bCommentBubbleVisible=False
+   NodeComment="Tries to show a banner view"
+   NodeGuid=56CAC4694D1BAE62E2259F963780E426
+End Object
+</textarea>
+<img src="_images/ShowBannerWithErrorHandling.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p>And that's it, if you run this code in a non-shipping build, any error will be printed and a new attempt to create, load and show the banner view will start.</p><div class="docsify-pagination-container">
+        <div class="pagination-item pagination-item--previous">
+          <a href="blueprintappopen">
+            <div class="pagination-item-label">
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"></polyline>
+              </svg>
+              <span>PREVIOUS</span>
+            </div>
+            <div class="pagination-item-title">App Open</div>
+      <div class="pagination-item-subtitle"></div></a>
+        </div>
+      
+        <div class="pagination-item pagination-item--next">
+          <a href="blueprintinterstitialad">
+            <div class="pagination-item-label">
+              <span>NEXT</span>
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="2,2 8,8 2,14"></polyline>
+              </svg>
+            </div>
+            <div class="pagination-item-title">Interstitial Ad</div>
+      <div class="pagination-item-subtitle"></div></a>
+        </div>
+      </div></article></section></main>
+<script>
+	function adblock() { if (window.canRunAds === undefined) { document.getElementById("block-notice").style.display = 'block'; } }
+</script>
+<script async="" src="./js/admob.js" onload="adblock()"></script>
+	<div id="block-notice" class="adblock-container">
+		<div>Ad Blocker detected. The documentation might not work properly.</div>
+		<div>
+			Some pages or images might be blocked if your ad blocker uses URL-based blocking as it contains the word "AdMob".<br>
+			This documentation doesn't show any ads whatsoever.
+		</div>
+		<button onclick="document.getElementById('block-notice').style.display = 'none'">
+			✖
+		</button>
+	</div>
+	<div id="work-notice" class="work-container">
+		<h1>The documentation is being reworked.</h1>
+		<div>
+			Page content is subject to change. You might need to force refresh the page to see changes.
+		</div>
+		<button onclick="document.getElementById('work-notice').style.display = 'none'">
+			✖
+		</button>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+<div class="progress" style="opacity: 0; width: 0%;"></div></body></html>
