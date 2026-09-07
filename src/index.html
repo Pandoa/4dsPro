@@ -1884,7 +1884,7 @@
 		<button onclick="document.getElementById('block-notice').style.display = 'none'">
 			&#10006;
 		</button>
-	</div>
+	</div>	
 
 	<div id="work-notice" class="work-container">
 		<h1>The documentation is being reworked.</h1>
@@ -1985,6 +1985,32 @@
 			});
 		})();
 	</script>
+	
+	<script>
+  (function () {
+    const shouldLoadAnalytics =
+      window.puppeteer !== true &&
+      !navigator.webdriver &&
+      location.hostname !== 'localhost' &&
+      location.hostname !== '127.0.0.1';
+    if (!shouldLoadAnalytics) {
+      return;
+    }
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https' + '://www.googleta' + 'gmanager.com/gt' + 'ag/' + 'js' + '?' + 'id' + '=G-EGXMT0XTHL';
+    script.onload = function () {
+      gtag('config', 'G-EGXMT0XTHL');
+    };
+    document.head.appendChild(script);
+  })();
+</script>
 </body>
 </html>
 

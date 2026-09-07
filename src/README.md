@@ -17,12 +17,12 @@ All functionalities are available without limitation for Blueprints and / or C++
 - iOS 14 app transparency support.
 - Really easy to use, no C++ required.
 
+## Get Started
+Start by following the [Get Started](/getstarted) page or dive directly in the code with the [Blueprints Examples](/blueprintexamples).
+
 <div style="text-align:center">
 <img alt="Features" src="_images/Features.png" class="no-shadow"/>
 </div>
-
-## Get Started
-Start by following the [Get Started](/getstarted) page or dive directly in the code with the [Blueprints Examples](/blueprintexamples).
 
 ## Support
 The [Troubleshooting](/troubleshooting) and the [Common Issues](/commonissues) pages might help you to quickly find a solution to a problem.  

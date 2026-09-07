@@ -1,5 +1,6 @@
 # GDPR - Blueprints Examples
 This section contains examples on how to use GDPR with the plugin.
+
 ## Checking if User Consent is required
 At app startup, you must check if the consent is required. To do so, call the `Is Consent Required` node of the Consent Library.
 

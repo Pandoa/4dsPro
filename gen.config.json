@@ -15,10 +15,42 @@
     ["?id=", ".html#"],
     ["js.html#", "js.html?id="]
   ],
-  "title": {
-  },
-  "descriptions": {
-  },
-  "keywords": {
+  "pages": {},
+  "pseo": {
+    "blueprintgdpr": [
+      {
+        "out_name": "blueprintgdpr"
+      },
+      {
+        "out_name": "how-to-support-gdpr-in-unreal-engine",
+        "title": "How to Support GDPR in Unreal Engine | Admob Consent Plugin for Blueprints",
+        "desc": "Stop struggling with C++ for EU user consent. This Blueprint-ready GDPR plugin for Unreal Engine integrates Google UMP (User Messaging Platform) without coding. Add Admob consent forms to Android/iOS, manage ad personalization, and ensure compliance in minutes.",
+        "keywords": "Unreal Engine GDPR, Admob consent plugin, Blueprint GDPR, UMP implementation, mobile ad compliance, EU user consent"
+      },
+      {
+        "out_name": "unreal-engine-gdpr-compliance-blueprints",
+        "title": "Unreal Engine GDPR Compliance: Add Consent Forms via Blueprints",
+        "desc": "Learn how to add GDPR consent forms to your Unreal Engine project effortlessly. This Ads Pro plugin offers visual scripting for Admob that handles user consent, non-personalized ads, and legal ad targeting—perfect for indie developers seeking a fast, reliable solution.",
+        "keywords": "Unreal Engine consent, Blueprint GDPR, add consent forms, mobile ads compliance, Admob Blueprint, game privacy"
+      },
+      {
+        "out_name": "gdpr-compliance-unreal-engine-no-cpp",
+        "title": "GDPR Compliance for Unreal Engine Games – No C++ Required",
+        "desc": "Remove the technical barriers of mobile ad compliance. This plugin enables full GDPR consent management for Admob using Unreal Engine Blueprints. Manage EU user consent strings and ad personalization options with a simple drag-and-drop interface for studios.",
+        "keywords": "Unreal Engine ad plugin, GDPR game compliance, Blueprint monetization, no C++ solution, Admob GDPR, consent management"
+      },
+      {
+        "out_name": "unreal-engine-admob-gdpr-plugin",
+        "title": "Unreal Engine Admob GDPR Plugin: Get Consent & Protect Ad Revenue",
+        "desc": "Ensure your game's longevity in the EU market. Our Ads Pro Plugin equips you with a robust Blueprint system to handle GDPR consent requests and forced ad personalization. Tested for Android & iOS—secure your mobile ad revenue today.",
+        "keywords": "Admob GDPR plugin, Unreal Engine ads, consent management, EU ad compliance, protect ad revenue, Google UMP"
+      },
+      {
+        "out_name": "google-ump-unreal-engine-blueprint",
+        "title": "Simplify Google UMP in Unreal Engine with This Blueprint Plugin",
+        "desc": "Implement the Google User Messaging Platform (UMP) using pure Blueprints. This plugin handles GDPR privacy options for Admob ads, ensuring your game respects user data privacy. Get real-time consent status and handle non-personalized ad requests visually.",
+        "keywords": "Google UMP Unreal, Blueprint ad plugin, mobile privacy, GDPR consent form, Admob integration, Unreal Engine monetization"
+      }
+    ]
   }
 }
