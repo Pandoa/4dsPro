@@ -1,4 +1,9 @@
 # GDPR - C++ Examples
+
+<Button href="https://www.fab.com/listings/57466477-d393-4aa5-b5bc-de80cf71f808" class="fab-button">
+Download the plugin on Fab
+</Button>
+
 This section contains examples on how to use GDPR with the plugin.
 ## Checking if User Consent is required
 At app startup, you must check if the consent is required. To do so, call the `IsConsentRequired` of the Consent Library.

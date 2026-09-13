@@ -1,6 +1,13 @@
-# Get Started
+# Get Started - Showing Ads in Unreal Engine
+
+
+<Button href="https://www.fab.com/listings/57466477-d393-4aa5-b5bc-de80cf71f808" class="fab-button">
+Download the plugin on Fab
+</Button>
 
 This section contains the steps required to use the plugin. You can still use the plugin if you don't follow them but will only have test ads and default configuration.
+
+After this guide, you will be able to show ads in Unreal Engine with the Google Mobile Ads SDK.
 
 ## Creating an AdMob account
 > [Official documentation page](https://support.google.com/admob/answer/7356219) for account creation.  

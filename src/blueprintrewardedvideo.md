@@ -1,5 +1,12 @@
 # Rewarded Video - Blueprint Examples
+
+<Button href="https://www.fab.com/listings/57466477-d393-4aa5-b5bc-de80cf71f808" class="fab-button">
+Download the plugin on Fab
+</Button>
+
 This section contains examples on how to use Rewarded Videos with Blueprints.
+
+
 ## Creating a Rewarded Video
 To use an Rewarded Video, we first have to create one. You can create an Rewarded Video with the `Create Rewarded Video` Blueprint node.
 <div class="bpcode">

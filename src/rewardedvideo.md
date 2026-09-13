@@ -1,4 +1,9 @@
 # Rewarded Video
+
+<Button href="https://www.fab.com/listings/57466477-d393-4aa5-b5bc-de80cf71f808" class="fab-button">
+Download the plugin on Fab
+</Button>
+
 This section contains information about Rewarded Videos, if you are looking for examples, head to the [Blueprint examples](/blueprintrewardedvideo) or the [C++ examples](/cpprewardedvideo).
 ## What are they?
 Rewarded Videos are ads that users have the option of interacting with in exchange for in-app rewards.

@@ -1,4 +1,9 @@
 # Common Issues
+
+<Button href="https://www.fab.com/listings/57466477-d393-4aa5-b5bc-de80cf71f808" class="fab-button">
+Download the plugin on Fab
+</Button>
+
 This section contains common issues.
 
 # Android Build Failed with Error: `cannot find symbol`

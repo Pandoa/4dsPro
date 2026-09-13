@@ -1,5 +1,11 @@
 # App Open - Blueprint Examples
+
+<Button href="https://www.fab.com/listings/57466477-d393-4aa5-b5bc-de80cf71f808" class="fab-button">
+Download the plugin on Fab
+</Button>
+
 This section contains examples on how to use App Open ads with Blueprints.
+
 ## Creating an App Open Ad
 To use an App Open ad, we first have to create one. You can create an App Open ad with the `Create App Open Ad` Blueprint node.
 <div class="bpcode">

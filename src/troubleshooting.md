@@ -1,4 +1,9 @@
 # Troubleshooting
+
+<Button href="https://www.fab.com/listings/57466477-d393-4aa5-b5bc-de80cf71f808" class="fab-button">
+Download the plugin on Fab
+</Button>
+
 This section contains information on how to troubleshoot errors you might face when using the plugin.
 
 ## Getting Device Logs

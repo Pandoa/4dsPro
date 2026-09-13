@@ -1,4 +1,10 @@
 # Rebuild the Plugin
+
+<Button href="https://www.fab.com/listings/57466477-d393-4aa5-b5bc-de80cf71f808" class="fab-button">
+Download the plugin on Fab
+</Button>
+
+
 On iOS, some mediation partners require their SDK to be linked during the compilation of the project. To enable those mediation partners, you have to rebuild the plugin with your own version of Xcode, after enabling the mediation partner in the plugin's settings.
 
 To rebuild the plugin:
