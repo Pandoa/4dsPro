@@ -8,7 +8,7 @@
   <meta property="og:title" content="AdsPro Documentation">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pandoa.github.io/4dsPro/">
-	<script type="application/ld+json">{"@context":"https://schema.org/","@type":"TechArticle","headline":"Ads Pro for Unreal Engine","name":"Ads Pro for Unreal Engine","description":"Add ads in your Unreal Engine game and start monetizing your game! Follow the examples to quickly get started and monetize in minutes.","author":{"@type":"Person","name":"Pandores","url":"https://www.fab.com/sellers/Pandores"},"publisher":{"@type":"Organization","name":"Pandores Marketplace","logo":{"@type":"ImageObject","url":"https://pandoa.github.io/4dsPro/favicon.svg"}},"proficiencyLevel":"Beginner","datePublished":"2024-10-15","mainEntityOfPage":"https://pandoa.github.io/4dsPro/","dateModified":"2026-09-13T09:46:50.496Z"}</script>
+	<script type="application/ld+json">{"@context":"https://schema.org/","@type":"TechArticle","headline":"Ads Pro for Unreal Engine","name":"Ads Pro for Unreal Engine","description":"Add ads in your Unreal Engine game and start monetizing your game! Follow the examples to quickly get started and monetize in minutes.","author":{"@type":"Person","name":"Pandores","url":"https://www.fab.com/sellers/Pandores"},"publisher":{"@type":"Organization","name":"Pandores Marketplace","logo":{"@type":"ImageObject","url":"https://pandoa.github.io/4dsPro/favicon.svg"}},"proficiencyLevel":"Beginner","datePublished":"2024-10-15","mainEntityOfPage":"https://pandoa.github.io/4dsPro/","dateModified":"2026-10-29T00:18:10.359Z"}</script>
 	<style>
 .fab-button {
   display: inline-flex;
@@ -1622,7 +1622,145 @@ so we add it to the plugin.</p><div class="docsify-pagination-container"></div><
 	
 	
 	
-	
+	<script>
+  (function () {
+    function track(name, params) {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", name, Object.assign({
+          lang: document.documentElement.lang || "unknown",
+          page: "adspro"
+        }, params || {}));
+      }
+    }
+    function domainOf(href) {
+      try { return new URL(href, location.href).hostname; } catch (err) { return ""; }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll("aside a[href^='#'], nav a[href^='#']").forEach(function (a) {
+        a.addEventListener("click", function () {
+          track("nav_click", {
+            section: (a.getAttribute("href") || "").slice(1),
+            link_text: (a.textContent || "").trim().slice(0, 80)
+          });
+        });
+      });
+      document.querySelectorAll("main a[href], article a[href]").forEach(function (a) {
+        a.addEventListener("click", function () {
+          var href = a.getAttribute("href") || "";
+          var linkText = (a.textContent || "").trim().slice(0, 80);
+          if (href.indexOf("mailto:") === 0) {
+            track("email_click", { link_text: linkText });
+            return;
+          }
+          if (href.charAt(0) === "#") {
+            track("anchor_click", { section: href.slice(1), link_text: linkText });
+            return;
+          }
+          if (/^https?:\/\//i.test(href)) {
+            var domain = domainOf(href);
+            track("outbound_click", {
+              link_url: href,
+              link_domain: domain,
+              link_text: linkText
+            });
+            if (domain === "fab.com" || domain === "www.fab.com") {
+              track("fab_marketplace_click", { link_url: href });
+            }
+            if (domain === "github.com") {
+              track("github_link_click", { link_url: href });
+            }
+            if (/youtube\.com|youtu\.be|vimeo\.com/.test(domain)) {
+              track("video_outbound_click", { link_url: href });
+            }
+          }
+        });
+      });
+      document.querySelectorAll("img.zoomable, img[data-zoomable], .lightbox-trigger").forEach(function (img) {
+        img.addEventListener("click", function () {
+          track("image_zoom", {
+            image_src: img.currentSrc || img.src || "",
+            image_alt: img.alt || ""
+          });
+        });
+      });
+      document.querySelectorAll("pre code, pre[class*='language-']").forEach(function (block) {
+        block.addEventListener("click", function () {
+          var el = block.classList && block.classList.contains("language-cpp") ? block : block;
+          var langClass = Array.prototype.slice.call(el.classList || [])
+            .filter(function (c) { return c.indexOf("language-") === 0; })[0];
+          track("code_block_click", {
+            code_language: langClass ? langClass.replace("language-", "") : "unknown"
+          });
+        });
+      });
+      document.querySelectorAll("[data-copy], .copy-button, .copy-btn, button[aria-label*='opy']").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          track("code_copy_click", {
+            copy_label: (btn.getAttribute("aria-label") || btn.textContent || "").trim().slice(0, 40)
+          });
+        });
+      });
+      if ("IntersectionObserver" in window) {
+        var seen = {};
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var id = entry.target.id;
+            if (entry.isIntersecting && id && !seen[id]) {
+              seen[id] = true;
+              track("section_view", { section: id });
+            }
+          });
+        }, { threshold: 0.5 });
+        document.querySelectorAll("main section[id], article section[id], section[id]").forEach(function (section) {
+          observer.observe(section);
+        });
+      }
+			          // --- Blueprint code blocks (.bpcode) ---
+          // Each block maps to a specific ad format via its screenshot filename.
+          document.querySelectorAll(".bpcode").forEach(function (bp) {
+            var img = bp.querySelector("img");
+            var imgFile = img ? ((img.getAttribute("src") || "").split("/").pop() || "unknown") : "unknown";
+            // Find the nearest heading above this block for section context
+            var heading = "";
+            var node = bp.previousElementSibling;
+            while (node) {
+              if (/^H[2-4]$/.test(node.tagName)) {
+                heading = (node.textContent || "").trim().slice(0, 80);
+                break;
+              }
+              node = node.previousElementSibling;
+            }
+            // "Copy Code" button — the strongest intent signal on this page
+            var btn = bp.querySelector("button[onclick*='copyBlueprintCode'], .bpcode-copy");
+            if (btn) {
+              btn.addEventListener("click", function () {
+                track("copy_blueprint_code", {
+                  blueprint_image: imgFile,
+                  section_heading: heading
+                });
+              });
+            }
+            // Read intent: user focuses/clicks the readonly textarea (often to Cmd+A / Cmd+C manually)
+            var ta = bp.querySelector("textarea");
+            if (ta) {
+              ta.addEventListener("focus", function () {
+                track("blueprint_code_focus", {
+                  blueprint_image: imgFile,
+                  section_heading: heading
+                });
+              });
+              // Catches manual copy AND any execCommand-based programmatic copy
+              ta.addEventListener("copy", function () {
+                track("blueprint_code_copy_event", {
+                  blueprint_image: imgFile,
+                  section_heading: heading
+                });
+              });
+            }
+          });
+    });
+  })();
+</script>
 	<script>
   (function () {
     const shouldLoadAnalytics =
