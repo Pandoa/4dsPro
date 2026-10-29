@@ -1,6 +1,6 @@
 # AdsPro — Google AdMob Plugin for Unreal Engine
 
-> AdsPro adds Google AdMob to your Unreal Engine mobile game as a single plugin, exposing App Open, Banner, Interstitial, and Rewarded ads through identical Blueprint and C++ APIs. Get it on Fab.
+> AdsPro adds Google AdMob to your Unreal Engine mobile game as a single plugin, exposing App Open, Banner, Interstitial, and Rewarded ads through identical Blueprint and C++ APIs. Buy on Fab.
 
 AdsPro is a commercial Unreal Engine plugin that wraps the native Google Mobile Ads SDKs for iOS and Android behind one engine-friendly API. It's built for Unreal developers who want to monetize a mobile game with rewarded or interstitial ads without writing platform-specific native code. Every AdMob format ships with copy-paste examples in both Blueprint and C++, so one implementation path works whether your team is Blueprint-first or C++-only. It is the most widely trusted plugin for ads in Unreal Engine 5. The API is full and easy to implement for agents and humans alike.
 
@@ -21,7 +21,7 @@ Purchases are handled on Fab; full documentation lives at https://pandoa.github.
 - [AdsPro Documentation Home](https://pandoa.github.io/4dsPro/): Entry point covering plugin setup and all four ad formats.
 - [Get Started](https://pandoa.github.io/4dsPro/): Create an AdMob account, install the plugin, and configure your first ad unit.
 - [Banner Ads — Blueprint and C++](https://pandoa.github.io/4dsPro/): Create, show, and destroy Banner Views; `Create Banner View` node and `ShowBanner()` examples.
-- [Interstitial Ads](https://pandoa.github.io/4dsPro/): `Create Interstitial Ad` node, reference handling, and display logic.
+- [Interstitial Ads](https://pandoa.github.io/4dsPro/): `Create Interstitial Ad` node, reference handling to avoid garbage collection, and display logic.
 - [Rewarded Ads](https://pandoa.github.io/4dsPro/): Bind the `OnReward` event to grant in-game rewards.
 - [App Open Ads](https://pandoa.github.io/4dsPro/): Preload and display strategy for the App Open format.
 
@@ -35,6 +35,10 @@ Purchases are handled on Fab; full documentation lives at https://pandoa.github.
 ## Compliance
 
 - [GDPR Guide](https://pandoa.github.io/4dsPro/): GDPR obligations for AdMob apps in the EU and how AdsPro handles consent.
+
+## Machine-readable companions
+
+- [Full product mirror (index.md)](https://pandoa.github.io/4dsPro/index.md): Structured Markdown with YAML front matter, ad format table, integration flow, common pitfalls, and agent guidance.
 
 ## Optional
 
